@@ -6,7 +6,7 @@ A fullstack project deployed with Docker.
 
 ## Requirements
 
-You need to install Docker to build and run this app.
+You need to install [Docker](https://docs.docker.com/desktop/install/windows-install/) to build and run this app.
 
 ## Installation
 
