@@ -24,11 +24,10 @@ export class UsersController {
         response.status(HttpStatus.CREATED);
         return this.usersService.createUser(createUserDto);
     }
-
+    /*
     @Get('/guide')
     @Redirect('https://nestjs.com', 301)
-    redirectUser(@Res({ passthrough: true }) response: Response): void {
-    }
+    redirectUser(@Res({ passthrough: true }) response: Response): void {}*/
 
     @Get('docs')
     @Redirect('https://docs.nestjs.com', 302)

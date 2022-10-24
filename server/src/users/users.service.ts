@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Observable, of } from "rxjs";
 import { CreateUserDto } from 'src/dtos/create-user.dto';
 import { User } from 'src/models/user.entity';
 import { Repository } from 'typeorm';

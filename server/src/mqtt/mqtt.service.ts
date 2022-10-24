@@ -3,7 +3,7 @@ import { Settings } from './mqtt.config';
 
 @Injectable()
 export class MqttService implements OnModuleInit {
-    private mqttClient;
+    //private mqttClient;
     settings: Settings;
 
     onModuleInit() {
