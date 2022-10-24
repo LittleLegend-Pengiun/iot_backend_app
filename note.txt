@@ -1,0 +1,9 @@
+To update image to docker hub:
+docker compose  --file docker-compose-dev.yaml push
+
+Run without build:
+1. Pull all the images: 
+docker compose  --file docker-compose-dev.yaml pull
+
+2. Run the app
+docker compose  --file docker-compose-dev.yaml up
