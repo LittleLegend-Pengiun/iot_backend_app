@@ -1,4 +1,5 @@
 .git
 *Dockerfile*
 *docker-compose*
-node_modules
+server/node_modules
+server/dist
