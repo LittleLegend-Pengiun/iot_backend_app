@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:12
+    container_name: dadn-postgres-dev
+    volumes:
+      - dadn-postgres-dev-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: dadndb
+      POSTGRES_PASSWORD: oohlala
+    networks:
+      - dadn-backend
+  server:
+    dns:
+      - 8.8.8.8
+      - 4.4.4.4
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    image: dadn-server:dev
+    container_name: dadn-server-dev
+    volumes:
+      - /home/node/app/node_modules
+      - ./server:/home/node/app
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_DATABASE: dadndb
+      DB_PASSWORD: oohlala
+    networks:
+      - dadn-backend
+    ports:
+      - 3030:3000
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    image: dadn-router:dev
+    container_name: dadn-router-dev
+    volumes:
+      - ./nginx/development.conf:/etc/nginx/conf.d/default.conf
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    networks:
+      - dadn-backend
+      - dadn-frontend
+
+volumes:
+  dadn-postgres-dev-db:
+    name: dadn-postgres-dev-db
+
+networks:
+  dadn-backend:
+    name: dadn-backend
+    driver: bridge
+  dadn-frontend:
+    name: dadn-frontend
+    driver: bridge
