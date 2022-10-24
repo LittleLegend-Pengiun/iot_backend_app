@@ -8,8 +8,8 @@ export class Settings {
         }
 
         this.settings = {
-            username: "hoanganhle",
-            activeKey: "aio_YwYD04uYo2GRLuK56Bh7DV3N8v5L",
+            username: process.env.ADAFRUIT_USERNAME,
+            activeKey: process.env.ADAFRUIT_KEY,
             clientTopics: [
                 this.clientTopics.led
             ],
