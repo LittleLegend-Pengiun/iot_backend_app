@@ -1,6 +1,6 @@
 export class Settings {
     clientTopics: any
-    settings: any
+    public settings: any
 
     constructor(){
         this.clientTopics = {
