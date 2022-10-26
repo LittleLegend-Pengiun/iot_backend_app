@@ -24,8 +24,6 @@ export class MqttService implements OnModuleInit {
         this.mqttClient.on("error", () => {
             error(`Error in connecting to Adafruit! Info: host ${process.env.ADAFRUIT_SERVER}, port: ${process.env.MQTT_PORT}`)
         });
-        //console.log(host, port);
-        //return [];
     }
 
     publish(topic: string, payload: string): string {

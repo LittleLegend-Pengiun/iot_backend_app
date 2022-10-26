@@ -6,13 +6,16 @@ import { AdminsController } from './admins/admins.controller';
 import { SocketIoGateway } from './gateway/socket-io.gateway';
 import { MqttService } from './mqtt/mqtt.service';
 import { ConfigModule } from '@nestjs/config';
+import { HttpModule, HttpService } from '@nestjs/axios';
 
 @Module({
   imports: [
     UsersModule, 
+    HttpModule,
     ConfigModule.forRoot({
       envFilePath: 'main.env'
-    })],
+    })
+  ],
   controllers: [AppController, AdminsController],
   providers: [SocketIoGateway, MqttService, AppService],
 })

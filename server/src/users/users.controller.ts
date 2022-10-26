@@ -12,11 +12,11 @@ export class UsersController {
     async getAllUsers(@Req() request: Request, @Res({ passthrough: true }) response: Response): Promise<any> {
         return this.usersService.getAllUser();
     }
-
+    /*
     @Get(':id')
     findOne(@Param() params, @Res() response): void {
         response.status(200).send(JSON.stringify({"message": `fake return user with id: ${params.id}`}))
-    }
+    }*/
 
     @Post('/create')
     @Header('Cache-Control', 'none')
@@ -36,5 +36,4 @@ export class UsersController {
             return { url: 'https://docs.nestjs.com/v5/' };
         }
     }
-
 }
