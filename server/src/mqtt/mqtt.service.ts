@@ -1,21 +1,20 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { error, info } from 'console';
 import { connect, MqttClient } from 'mqtt';
-import { Settings } from './mqtt.config';
+import { Config } from './mqtt.config';
 
 @Injectable()
 export class MqttService implements OnModuleInit {
     mqttClient: MqttClient;
-    settings: Settings;
 
     onModuleInit() {
-        this.settings = new Settings();
+        const config = new Config();
         this.mqttClient = connect({
             connectTimeout: 4000,
             host: process.env.ADAFRUIT_SERVER,
             port: parseInt(process.env.MQTT_PORT),
-            username: process.env.ADAFRUIT_USERNAME,
-            password: process.env.ADAFRUIT_KEY
+            username: config.settings.username,
+            password: config.settings.activeKey
         });
 
         this.mqttClient.on("connect", () => {
