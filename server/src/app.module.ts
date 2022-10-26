@@ -6,7 +6,7 @@ import { AdminsController } from './admins/admins.controller';
 import { SocketIoGateway } from './gateway/socket-io.gateway';
 import { MqttService } from './mqtt/mqtt.service';
 import { ConfigModule } from '@nestjs/config';
-import { HttpModule, HttpService } from '@nestjs/axios';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
