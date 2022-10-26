@@ -13,7 +13,9 @@ export class AppController {
     //const maxRecord = 15;
     const settings = (new Config).settings;
     const httpServices = new HttpService();
-    const ledStatus = await httpServices.axiosRef.get(`https://io.adafruit.com//api/v2/${settings.username}/feeds/${settings.feedKey.led}/data`);
+    const ledStatus = await httpServices.axiosRef.get(
+      `https://io.adafruit.com//api/v2/${settings.username}/feeds/${settings.feedKey.led}/data`
+    );
 
     return {
         led: ledStatus.data
