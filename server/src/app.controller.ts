@@ -1,7 +1,8 @@
-import { Controller, Get, HttpCode } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { HttpService } from '@nestjs/axios';
 import { Config } from 'src/mqtt/mqtt.config';
+import { MqttService } from './mqtt/mqtt.service';
 
 @Controller()
 export class AppController {
@@ -21,4 +22,10 @@ export class AppController {
         led: ledStatus.data
     }
   }
+  /*
+  @Post('/update-device-status')
+  async updateData(request: Request, response: Response) {
+    const service = new MqttService;
+    //service.publish()
+  }*/
 }
