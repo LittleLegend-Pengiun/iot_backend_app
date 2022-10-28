@@ -17,7 +17,20 @@ export class AppController {
     const ledStatus = await httpServices.axiosRef.get(
       `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${this.settings.feedKey.led}/data`
     );
+    
+    return {
+        led: ledStatus.data
+    }
+  }
 
+  @Get('/get-all-chart-data')
+  @HttpCode(200)
+  async getAllChartData(): Promise<any> {
+    const httpServices = new HttpService;
+    const ledStatus = await httpServices.axiosRef.get(
+      `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${this.settings.feedKey.led}/data/chart?hours=24`
+    );
+    
     return {
         led: ledStatus.data
     }
