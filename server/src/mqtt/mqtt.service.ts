@@ -23,23 +23,23 @@ export class MqttService implements OnModuleInit {
             info("Connect successfull!")
             for (let topic of settings.clientTopics) {
                 try {
-                    this.mqttClient.subscribe(topic);
-                    console.log('Subcribe topic ' + topic);
+                    this.mqttClient.subscribe(`${settings.username}/feeds/${topic}`, () => {
+                        console.log('Subcribe topic ' + topic);
+                    });
                 } catch (err) {
                     console.log(`Error subcribing topic ${topic}`);
                 }
             }
         });
 
-        this.mqttClient.on("message", async (feedID, data, _) => {
-            console.log(`${feedID}`)
-            console.log(`Data received from ${feedID}: ${data}`);
+        this.mqttClient.on("message", async (topic: any, message: any, _) => {
+            console.log(`Data received from ${topic}: ${message}`);
             // emit to server
             let new_data = await httpServices.axiosRef.get(
-                `https://io.adafruit.com/api/v2/${settings.username}/feeds/${feedID}/data`
+                `https://io.adafruit.com/api/v2/${topic}/data`
             );
             console.log(
-                "new_data", { feedID: feedID, data: new_data.data[0] }
+                "new_data", { feedID: topic, data: new_data.data[0] }
             );
         });
 
@@ -48,9 +48,17 @@ export class MqttService implements OnModuleInit {
         });
     }
 
-    publish(topic: string, payload: string): string {
-        info(`Publishing to ${topic}`);
-        this.mqttClient.publish(topic,payload);
-        return `Publishing to ${topic}`;
+    publish(topic: string, payload: string, callback = (err) => {}) {
+        try {
+            if (topic == undefined || payload == undefined) {
+                callback(Error("Cannot publish data!"));
+                return;
+            }
+            this.mqttClient.publish(topic, payload);
+        } catch (err) {
+            callback(err);
+            return;
+        }
+        callback(undefined);
     }
 }
