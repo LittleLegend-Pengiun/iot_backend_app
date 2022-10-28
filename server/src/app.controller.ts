@@ -24,10 +24,10 @@ export class AppController {
   }
   
   @Post('/update-device-status')
-  async updateData(@Req() req , @Res() res) {
+  async updateData(@Req() req, @Res() res) {
     let feedID: string = undefined;
     if (req.body.device == "led") feedID = this.settings.feedKeyDetail.led;
-    else if (req.body.device == "pump") feedID = this.settings.feedKeyDetail.pump;
+    else if (req.body.device == "fan") feedID = this.settings.feedKeyDetail.fan;
     this.mqttService.publish(`${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
         if (err) return res.status(201).send(err.toString());
         return res.status(200).send();
