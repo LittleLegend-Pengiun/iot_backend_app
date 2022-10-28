@@ -5,42 +5,55 @@ import { MqttService } from './mqtt/mqtt.service';
 
 @Controller()
 export class AppController {
-  settings: any
+  settings: any;
+  httpServices: any;
   constructor(private mqttService: MqttService) {
-    this.settings = (new Config).settings
+    this.settings = (new Config).settings;
+    this.httpServices = new HttpService;
   }
 
   @Get('/get-all-data')
   @HttpCode(200)
   async getAllData(): Promise<any> {
-    const httpServices = new HttpService;
-    const ledStatus = await httpServices.axiosRef.get(
-      `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${this.settings.feedKey.led}/data`
-    );
-    
-    return {
-        led: ledStatus.data
+    const dict: Object = {};
+    for (let key of this.settings.feedKey) {
+      try {
+        let status = await this.httpServices.axiosRef.get(
+          `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${key}/data`
+        );
+        dict[`${key.substr(4)}`] = status.data;
+      } catch (err) {
+        console.log(`Error: ${err}; key: ${key}`);
+      }
     }
+
+    return dict;
   }
 
   @Get('/get-all-chart-data')
   @HttpCode(200)
   async getAllChartData(): Promise<any> {
-    const httpServices = new HttpService;
-    const ledStatus = await httpServices.axiosRef.get(
-      `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${this.settings.feedKey.led}/data/chart?hours=24`
-    );
-    
-    return {
-        led: ledStatus.data
+    const dict: Object = {};
+    for (let key of this.settings.feedKey) {
+      try {
+        let status = await this.httpServices.axiosRef.get(
+          `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${key}/data/chart?hours=24`
+        );
+        dict[`${key.substr(4)}`] = status.data.data;
+      } catch (err) {
+        console.log(`Error: ${err}; key: ${key}`);
+      }
     }
+
+    return dict;
+    
   }
   
   @Post('/update-device-status')
   async updateData(@Req() req, @Res() res) {
     let feedID: string = undefined;
     if (req.body.device == "led") feedID = this.settings.feedKeyDetail.led;
-    else if (req.body.device == "fan") feedID = this.settings.feedKeyDetail.fan;
+    else if (req.body.device == "pump") feedID = this.settings.feedKeyDetail.pump;
     this.mqttService.publish(`${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
         if (err) return res.status(201).send(err.toString());
         return res.status(200).send();
