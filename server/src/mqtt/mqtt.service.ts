@@ -2,11 +2,13 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { error, info } from 'console';
 import { connect, MqttClient } from 'mqtt';
+import { SocketIoGateway } from 'src/gateway/socket-io.gateway';
 import { Config } from './mqtt.config';
 
 @Injectable()
 export class MqttService implements OnModuleInit {
     mqttClient: MqttClient;
+    constructor(private socketIO: SocketIoGateway) {}
 
     onModuleInit() {
         const settings = (new Config).settings;
@@ -38,7 +40,7 @@ export class MqttService implements OnModuleInit {
             let new_data = await httpServices.axiosRef.get(
                 `https://io.adafruit.com/api/v2/${topic}/data`
             );
-            console.log(
+            this.socketIO.server.emit(
                 "new_data", { feedID: topic, data: new_data.data[0] }
             );
         });

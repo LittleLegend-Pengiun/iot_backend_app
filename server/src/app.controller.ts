@@ -2,6 +2,7 @@ import { Controller, Get, HttpCode, Post, Res, Req } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Config } from 'src/mqtt/mqtt.config';
 import { MqttService } from './mqtt/mqtt.service';
+import { Request, Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -50,12 +51,13 @@ export class AppController {
   }
   
   @Post('/update-device-status')
-  async updateData(@Req() req, @Res() res) {
+  async updateData(@Req() req: Request, @Res() res: Response) {
     let feedID: string = undefined;
     if (req.body.device == "led") 
       feedID = this.settings.feedKeyDetail.led;
     else if (req.body.device == "pump") 
       feedID = this.settings.feedKeyDetail.pump;
+    
     this.mqttService.publish(
       `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
         if (err) return res.status(201).send(err.toString());
