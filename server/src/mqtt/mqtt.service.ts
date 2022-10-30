@@ -40,6 +40,8 @@ export class MqttService implements OnModuleInit {
             let new_data = await httpServices.axiosRef.get(
                 `https://io.adafruit.com/api/v2/${topic}/data`
             );
+
+            // Send data realtime
             this.socketIO.server.emit(
                 "new_data", { feedID: topic, data: new_data.data[0] }
             );
