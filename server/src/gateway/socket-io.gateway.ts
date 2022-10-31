@@ -3,7 +3,10 @@ import { OnGatewayConnection, OnGatewayDisconnect, WebSocketGateway, WebSocketSe
 
 @WebSocketGateway()
 @Injectable()
-export class SocketIoGateway implements OnGatewayConnection, OnGatewayDisconnect {
+export class SocketIoGateway implements 
+  OnGatewayConnection, 
+  OnGatewayDisconnect 
+{
   @WebSocketServer()
   server;
   users: number = 0;
