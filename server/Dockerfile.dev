@@ -19,7 +19,7 @@ RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 
 COPY --chown=node:node . .
-COPY --from=builder ./app/node_modules /home/node/app/app_modules
+COPY --from=builder /app/node_modules /home/node/app/app_modules
 
 RUN npm i @nestjs/cli
 CMD ["yarn", "run", "start:dev"]

@@ -46,8 +46,7 @@ export class AppController {
       }
     }
 
-    return dict;
-    
+    return dict; 
   }
   
   @Post('/update-device-status')
