@@ -39,7 +39,7 @@ export class UsersController {
       if(userData && await bcrypt.compare(password, userData.password)){
         res.status(HttpStatus.ACCEPTED);
         console.log()
-        var token = this.jwtService.sign(
+        let token = this.jwtService.sign(
             { id: userData.id }, 
             { secret: process.env.JWT_SECRET }
         );
