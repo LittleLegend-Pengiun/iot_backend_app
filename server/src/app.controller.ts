@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Post, Res, Req } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post, Res, Req, Param } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Config } from 'src/mqtt/mqtt.config';
 import { MqttService } from './mqtt/mqtt.service';
@@ -31,14 +31,19 @@ export class AppController {
     return dict;
   }
 
-  @Get('/get-all-chart-data')
+  @Get('/get-all-chart-data/:hours')
   @HttpCode(200)
-  async getAllChartData(): Promise<any> {
+  async getAllChartData(@Param('hours') hours: number): Promise<any> {
     const dict: Object = {};
+    let hoursToGet: string
+    if (hours == 0) 
+      hoursToGet = "";
+    else
+      hoursToGet = "?hours=" + hours.toString();
     for (let key of this.settings.feedKey) {
       try {
         let status = await this.httpServices.axiosRef.get(
-          `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${key}/data/chart?hours=24`
+          `https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${key}/data/chart${hoursToGet}`
         );
         dict[`${key.substr(4)}`] = status.data.data;
       } catch (err) {
@@ -57,6 +62,10 @@ export class AppController {
       feedID = this.settings.feedKeyDetail.led;
     else if (req.body.device == "pump") 
       feedID = this.settings.feedKeyDetail.pump;
+    else if (req.body.device == "temp") 
+      feedID = this.settings.feedKeyDetail.temp;
+    else if (req.body.device == "humi") 
+      feedID = this.settings.feedKeyDetail.humi;
     
     this.mqttService.publish(
       `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
