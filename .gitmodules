@@ -1,0 +1,6 @@
+[submodule "client/Smart-house"]
+	path = client/Smart-house
+	url = https://github.com/trucngdev/Smart-house.git
+[submodule "Smart-house"]
+	path = Smart-house
+	url = https://github.com/trucngdev/Smart-house.git
