@@ -13,6 +13,10 @@ export class UsersService {
         return this.userRepository.find();
     }
 
+    getUserByUsername(username: string): Promise<User> {
+        return this.userRepository.findOneBy({username: username});
+    }
+
     async createUser(createUserDto: CreateUserDto) {
         const newUser = new User();
         newUser.username = createUserDto.username;
