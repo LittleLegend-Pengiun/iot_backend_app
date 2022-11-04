@@ -25,3 +25,7 @@ Note: Run each command one after the other.
 ## Running the app
 
 After the installation complete, the backend server is available in port 8080.
+
+## Adafruit Dashboard
+
+https://io.adafruit.com/Tez0106/public

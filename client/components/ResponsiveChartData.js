@@ -1,15 +1,8 @@
-import io from 'Socket.IO-client';
-
-
-const API = "http://localhost:8081/";
-
-const responsiveChartData = (state, setState) => {
+const initResponsiveChartDataListener = (state, setState, socket) => {
     const feedKey = {
         temp: "Tez0106/feeds/bbc-temp",
         humi: "Tez0106/feeds/bbc-humi"
     };
-      //useEffect(() => {
-    let socket = io(API, {transports: ['websocket']});
     
     let newstate = {
         temparrname: state.temparrname.slice(0),
@@ -39,4 +32,4 @@ const responsiveChartData = (state, setState) => {
     })
 }
 
-export default responsiveChartData;
+export default initResponsiveChartDataListener;

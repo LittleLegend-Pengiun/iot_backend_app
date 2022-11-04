@@ -3,15 +3,19 @@ import Layout from "../layout/layout"
 import styles from "../styles/Current-state.module.css"
 import CurrentStateContent from "../components/CurrentStateContent"
 import axios from 'axios';
-import responsiveData from "../components/ResponsiveData";
-import { useState } from "react";
+import initResponsiveDataListener from "../components/ResponsiveData";
+import { useEffect, useState } from "react";
+import { useSocketContext } from "../context/appWrapper";
 
 export default function CurrentState({data}) {
   const [state, setState] = useState(data);
+  const socket =  useSocketContext();
 
-  responsiveData(state, setState);
-  //socket.off('new_data', listener)
-  //}, []);
+  useEffect(() => {
+    initResponsiveDataListener(state, setState, socket);
+  }
+  , [])
+
 
   let dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] }, { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] }]
 

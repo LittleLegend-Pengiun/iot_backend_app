@@ -1,9 +1,4 @@
-import io from 'Socket.IO-client';
-
-
-const API = "http://localhost:8081/";
-
-const responsiveData = (state, setState) => {
+const initResponsiveDataListener = (state, setState, socket) => {
     const feedKey = {
         temp: "Tez0106/feeds/bbc-temp",
         pump: "Tez0106/feeds/bbc-pump",
@@ -11,7 +6,6 @@ const responsiveData = (state, setState) => {
         humi: "Tez0106/feeds/bbc-humi"
     };
       //useEffect(() => {
-    let socket = io(API, {transports: ['websocket']});
     
     let newstate = {
         led: state.led.slice(0,-1),
@@ -31,4 +25,4 @@ const responsiveData = (state, setState) => {
     })
 }
 
-export default responsiveData;
+export default initResponsiveDataListener;

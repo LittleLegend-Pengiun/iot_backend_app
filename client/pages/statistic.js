@@ -3,9 +3,9 @@ import Layout from "../layout/layout"
 import styles from "../styles/Statistic.module.css"
 import StatisticContent from "../components/StatisticContent"
 import axios from 'axios';
-import { useState } from "react";
-import responsiveChartData from "../components/ResponsiveChartData";
-
+import { useEffect, useState } from "react";
+import initResponsiveChartDataListener from "../components/ResponsiveChartData";
+import { useSocketContext } from "../context/appWrapper";
 
 export default function Statistic({ data }) {
   let temparrname = [];
@@ -30,7 +30,10 @@ export default function Statistic({ data }) {
     humarrvalue: humarrvalue
   })
 
-  responsiveChartData(state, setState);
+  const socket = useSocketContext();
+  useEffect(() => {
+    initResponsiveChartDataListener(state, setState, socket);
+  },[])
 
   const datatemp = {
     labels: state.temparrname,
