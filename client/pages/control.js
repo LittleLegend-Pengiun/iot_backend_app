@@ -6,11 +6,17 @@ import { useSocketContext } from "../context/appWrapper"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import initResponsiveDataListener from "../components/ResponsiveData";
+import { useRouter } from "next/router";
 
 // const dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: "35 °C" }, { key: "humid", name: "Độ ẩm", val: "76 %" }]
 
 export default function Control({data}) {
-  console.log("Control data",data);
+  // console.log("Control data",data);
+  const router = useRouter();
+  if (!data) {
+    router.replace("/login");
+  }
+
   const [state, setState] = useState(data);
 
   const socket = useSocketContext();
@@ -37,9 +43,22 @@ Control.getLayout = function getLayout(page) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await axios.get('http://localhost:8080/server/get-all-data');
-  const data = res.data;
+  // console.log(parsedCookies);
+  const res = await axios.get(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/get-all-data`, {
+    headers: {
+      Cookie: context.req.headers.cookie
+    }
+  });
+  // console.log(res.data.isError);
+  if (res.data.isError) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login"
+      }
+    }
+  }
   return {
-      props: { data }
+      props: { data:res.data }
   };
 }

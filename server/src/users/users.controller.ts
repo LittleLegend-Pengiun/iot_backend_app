@@ -38,13 +38,15 @@ export class UsersController {
       const userData = await this.usersService.getUserByUsername(username);
       if(userData && await bcrypt.compare(password, userData.password)){
         res.status(HttpStatus.ACCEPTED);
-        console.log()
         let token = this.jwtService.sign(
             { id: userData.id }, 
             { secret: process.env.JWT_SECRET }
         );
         res.cookie("jwt-token", token);
-        res.send({message: "Authentication success!"});
+        res.send({
+            "jwt-token": token,
+            "message": "Authentication success!",
+        });
        } else {
         res.status(HttpStatus.UNAUTHORIZED);
         res.send({message: "Authentication failed, recheck username and password!"});

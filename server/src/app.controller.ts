@@ -3,6 +3,10 @@ import { HttpService } from '@nestjs/axios';
 import { Config } from 'src/mqtt/mqtt.config';
 import { MqttService } from './mqtt/mqtt.service';
 import { Request, Response } from 'express';
+import { UseGuards } from '@nestjs/common';
+import { VerifyGuard } from './guards/verify.guard';
+import { UseFilters } from '@nestjs/common';
+import { UnauthorizedExceptionFilter } from './filters/unauthorized-exception.filter';
 
 @Controller()
 export class AppController {
@@ -14,6 +18,8 @@ export class AppController {
   }
 
   @Get('/get-all-data')
+  @UseGuards(VerifyGuard)
+  @UseFilters(UnauthorizedExceptionFilter)
   @HttpCode(200)
   async getAllData(): Promise<any> {
     const dict: Object = {};
@@ -32,6 +38,8 @@ export class AppController {
   }
 
   @Get('/get-all-chart-data/:hours')
+  @UseGuards(VerifyGuard)     
+  @UseFilters(UnauthorizedExceptionFilter)
   @HttpCode(200)
   async getAllChartData(@Param('hours') hours: number): Promise<any> {
     const dict: Object = {};
@@ -55,6 +63,8 @@ export class AppController {
   }
   
   @Post('/update-device-status')
+  @UseGuards(VerifyGuard)
+  @UseFilters(UnauthorizedExceptionFilter)
   async updateData(@Req() req: Request, @Res() res: Response) {
     let feedID: string = undefined;
     if (req.body.device == "led") 

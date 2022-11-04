@@ -31,8 +31,25 @@ services:
       DB_PASSWORD: oohlala
     networks:
       - dadn-backend
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    image: dadn-client:dev
+    container_name: dadn-client-dev
+    volumes:
+      - /home/node/app/node_modules
+      - ./client:/home/node/app
+    networks:
+      - dadn-frontend
     ports:
-      - 3030:3000
+      - 3031:3000
+    environment:
+      API_HOST: http://nginx
+      HTTP_PORT: 8080
+      WS_PORT: 8081
+
   nginx:
     build:
       context: ./nginx
@@ -43,6 +60,7 @@ services:
       - ./nginx/development.conf:/etc/nginx/conf.d/default.conf
     restart: unless-stopped
     ports:
+      - 8079:79
       - 8080:80
       - 8081:81
     networks:

@@ -6,6 +6,7 @@ import { SocketIoGateway } from './gateway/socket-io.gateway';
 import { MqttService } from './mqtt/mqtt.service';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { VerifyGuard } from './guards/verify.guard';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { HttpModule } from '@nestjs/axios';
     })
   ],
   controllers: [AppController, AdminsController],
-  providers: [SocketIoGateway, MqttService],
+  providers: [SocketIoGateway, MqttService, VerifyGuard],
 })
 export class AppModule {}

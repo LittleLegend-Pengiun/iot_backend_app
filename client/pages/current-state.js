@@ -45,9 +45,22 @@ CurrentState.getLayout = function getLayout(page) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await axios.get('http://localhost:8080/server/get-all-data');
-  const data = res.data;
+  // console.log(parsedCookies);
+  const res = await axios.get(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/get-all-data`, {
+    headers: {
+      Cookie: context.req.headers.cookie
+    }
+  });
+  // console.log(res.data.isError);
+  if (res.data.isError) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login"
+      }
+    }
+  }
   return {
-      props: { data }
+      props: { data:res.data }
   };
 }

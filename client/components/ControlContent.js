@@ -39,13 +39,13 @@ export default function ControlContent({controlState}) {
 
 async function lightsw() {
   if (document.getElementById('switch1').checked) {
-    const res = await axios.post('http://localhost:8080/server/update-device-status', {
+    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
       "device": "led",
       "deviceStatus": "1"
     });
     console.log("LED switch response", res);
   } else {
-    const res = await axios.post('http://localhost:8080/server/update-device-status', {
+    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
       "device": "led",
       "deviceStatus": "0"
     });
@@ -55,13 +55,13 @@ async function lightsw() {
 
 async function pumpsw() {
   if (document.getElementById('switch2').checked) {
-    const res = await axios.post('http://localhost:8080/server/update-device-status', {
+    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
       "device": "pump",
       "deviceStatus": "3"
     });
     console.log("Pump switch response", res);
   } else {
-    const res = await axios.post('http://localhost:8080/server/update-device-status', {
+    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
       "device": "pump",
       "deviceStatus": "4"
     });
