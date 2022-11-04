@@ -1,7 +1,7 @@
 import io from 'Socket.IO-client';
 
 
-const API = "http://localhost:3030/";
+const API = "http://localhost:8081/";
 
 const responsiveChartData = (state, setState) => {
     const feedKey = {
