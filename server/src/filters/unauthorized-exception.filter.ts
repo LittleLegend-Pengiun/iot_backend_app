@@ -9,7 +9,7 @@ export class UnauthorizedExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const status = exception.getStatus();
 
-    response.status(200);
+    response.status(status);
     response.send({
       isError: true,
       message: "Unauthorized access, please login!"

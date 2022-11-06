@@ -23,8 +23,8 @@ const initResponsiveDataListener = (state, setState, socket) => {
         else if (msg.feedID == feedKey.led) newstate["led"] = [item].concat(state.led);
         else if (msg.feedID == feedKey.humi) newstate["humi"] = [item].concat(state.humi);
 
-        console.log('new_data state',state);
-        console.log('new_data newState',newstate);    
+        //console.log('new_data state',state);
+        //console.log('new_data newState',newstate);    
         setState({...newstate});
     })
 }

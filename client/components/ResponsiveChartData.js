@@ -10,27 +10,19 @@ const initResponsiveChartDataListener = (state, setState, socket) => {
         humarrname: state.humarrname.slice(0),
         humarrvalue: state.humarrvalue.slice(0)
     };
-    setState(newstate);
-    
     socket.on('new_data', (msg) => {        
         console.log('new_data called');   
         if (msg.feedID == feedKey.temp) 
         {
-            newstate["temparrname"] = state.temparrname.concat([msg.data.created_at]);
-            newstate["temparrvalue"] = state.temparrvalue.concat([msg.data.value]);
+            newstate["temparrname"] = newstate.temparrname.concat([msg.data.created_at]);
+            newstate["temparrvalue"] = newstate.temparrvalue.concat([msg.data.value]);
         }
         else if (msg.feedID == feedKey.humi) 
         {
-            newstate["humarrname"] = state.humarrname.concat([msg.data.created_at]);
-            newstate["humarrvalue"] = state.humarrvalue.concat([msg.data.value]);
+            newstate["humarrname"] = newstate.humarrname.concat([msg.data.created_at]);
+            newstate["humarrvalue"] = newstate.humarrvalue.concat([msg.data.value]);
         }
-        setState(newstate);
-        newstate = {
-            temparrname: state.temparrname.slice(0),
-            temparrvalue: state.temparrvalue.slice(0),
-            humarrname: state.humarrname.slice(0),
-            humarrvalue: state.humarrvalue.slice(0)
-        };
+        setState({...newstate});
     })
 }
 
