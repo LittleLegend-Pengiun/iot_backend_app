@@ -21,7 +21,7 @@ export default function ControlContent({controlState}) {
 
         {/* Quạt */}
         <div id={styles.togglebox}>
-          <a id={styles.toggleboxlable}>Quạt</a>
+          <a id={styles.toggleboxlable}>Bơm</a>
           <input checked={controlState["pump"][0].value === "3"} type="checkbox" id="switch2" className={styles.checkbox} onClick={pumpsw} />
           <label htmlFor="switch2" className={styles.toggle} />
         </div>
