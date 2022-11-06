@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Post, Res, Req, Param } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post, Res, Req, Param, HttpStatus } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Config } from 'src/mqtt/mqtt.config';
 import { MqttService } from './mqtt/mqtt.service';
@@ -66,6 +66,28 @@ export class AppController {
   @UseGuards(VerifyGuard)
   @UseFilters(UnauthorizedExceptionFilter)
   async updateData(@Req() req: Request, @Res() res: Response) {
+    let feedID: string = undefined;
+    if (req.body.device == "led") 
+      feedID = this.settings.feedKeyDetail.led;
+    else if (req.body.device == "pump") 
+      feedID = this.settings.feedKeyDetail.pump;
+    else if (req.body.device == "temp") 
+      feedID = this.settings.feedKeyDetail.temp;
+    else if (req.body.device == "humi") 
+      feedID = this.settings.feedKeyDetail.humi;
+    
+    this.mqttService.publish(
+      `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
+        if (err) return res.status(201).send(err.toString());
+        return res.status(200).send();
+    });
+  }
+
+  @Post('/update-device-status-for-dev')
+  async updateDataDev(@Req() req: Request, @Res() res: Response) {
+    if (req.body.token != process.env.JWT_SECRET) return res.status(HttpStatus.FORBIDDEN).send({
+      Error: "API access denied!"
+    });
     let feedID: string = undefined;
     if (req.body.device == "led") 
       feedID = this.settings.feedKeyDetail.led;
