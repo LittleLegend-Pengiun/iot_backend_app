@@ -48,7 +48,7 @@ export class UsersService {
             console.log('New user save');
             return {"new user saved": savedUser};
         } catch (e) {
-            console.error("Save new user error", e.getMessage());
+            console.error("Save new user error", e);
         }
     }
 }

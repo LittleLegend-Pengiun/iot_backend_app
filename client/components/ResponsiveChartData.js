@@ -10,8 +10,10 @@ const initResponsiveChartDataListener = (state, setState, socket) => {
         humarrname: state.humarrname.slice(0),
         humarrvalue: state.humarrvalue.slice(0)
     };
+    setState(newstate);
     
-    socket.on('new_data', (msg) => {          
+    socket.on('new_data', (msg) => {        
+        console.log('new_data called');   
         if (msg.feedID == feedKey.temp) 
         {
             newstate["temparrname"] = state.temparrname.concat([msg.data.created_at]);

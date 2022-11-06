@@ -14,7 +14,8 @@ export default function LoginForm() {
   const Redirect = async () => {
     //will do some authentication work here before navigate user to the main page
     try {
-      const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/users/authenticate`, {
+      console.log(`http://localhost:8080/server/users/authenticate`);
+      const res = await axios.post(`http://localhost:8080/server/users/authenticate`, {
         "username": usernameInput,
         "password": passwordInput
       }, {
@@ -23,10 +24,10 @@ export default function LoginForm() {
       setCookie("jwt-token", data["jwt-token"]);
       router.push("/control");
     } catch(e) {
-      const {response} = e;
-      if(response.status) {
-        alert("Login failed, invalid credential");
-      }
+      // const {response} = e;
+      // if(response.status) {
+      //   alert("Login failed, invalid credential");
+      // }
       console.log("Login error", e);
     }
     // window.location.href = 'http://localhost:3000/current-state';

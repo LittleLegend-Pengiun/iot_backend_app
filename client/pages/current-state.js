@@ -19,7 +19,7 @@ export default function CurrentState({data}) {
 
   let dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] }, { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] }]
 
-  let dataDeviceState = [{ key:"lamp", name: "Đèn", val: state["led"][0]["value"] == 0? "TẮT":"BẬT" }, {key:"fan", name: "Bơm", val: state["pump"][0]["value"] == 4? "MỞ":"ĐÓNG" }, { key:"curtain", name: "Rèm", val: "ĐÓNG" }]
+  let dataDeviceState = [{ key:"lamp", name: "Đèn", val: state["led"][0]["value"] == 0? "TẮT":"BẬT" }, {key:"fan", name: "Bơm", val: state["pump"][0]["value"] == 3? "MỞ":"ĐÓNG" }, { key:"curtain", name: "Rèm", val: "ĐÓNG" }]
 
   return (<div className={styles.page}>
     <div className={styles.card}>
@@ -38,7 +38,7 @@ export default function CurrentState({data}) {
 
 CurrentState.getLayout = function getLayout(page) {
   return (
-    <Layout>
+    <Layout>``
       {page}
     </Layout>
   )
@@ -46,7 +46,7 @@ CurrentState.getLayout = function getLayout(page) {
 
 export async function getServerSideProps(context) {
   // console.log(parsedCookies);
-  const res = await axios.get(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/get-all-data`, {
+  const res = await axios.get(`http://localhost:8080/server/get-all-data`, {
     headers: {
       Cookie: context.req.headers.cookie
     }

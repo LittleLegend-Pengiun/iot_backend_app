@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow, faDroplet, faLightbulb, faPersonBooth, faFan } from "@fortawesome/free-solid-svg-icons";
 
 export default function ControlContent({controlState}) {
+
+  console.log("controlState",controlState);
+  console.log("led",controlState["led"][0].value === "1");
+  console.log("pump", controlState["pump"][0].value === "3");
   return (
     <div className={styles.container}>
       <div className={styles.item}>
@@ -11,14 +15,14 @@ export default function ControlContent({controlState}) {
         {/* Đèn */}
         <div id={styles.togglebox}>
           <a id={styles.toggleboxlable}>Đèn</a>
-          <input value={controlState["led"] === "1"} type="checkbox" id="switch1" className={styles.checkbox} onClick={lightsw} />
+          <input checked={controlState["led"][0].value === "1"} type="checkbox" id="switch1" className={styles.checkbox} onClick={lightsw} />
           <label htmlFor="switch1" className={styles.toggle} />
         </div>
 
         {/* Quạt */}
         <div id={styles.togglebox}>
           <a id={styles.toggleboxlable}>Quạt</a>
-          <input value={controlState["pump"] === "3"} type="checkbox" id="switch2" className={styles.checkbox} onClick={pumpsw} />
+          <input checked={controlState["pump"][0].value === "3"} type="checkbox" id="switch2" className={styles.checkbox} onClick={pumpsw} />
           <label htmlFor="switch2" className={styles.toggle} />
         </div>
 
@@ -37,39 +41,48 @@ export default function ControlContent({controlState}) {
 
 //Function for toggle switch ==============================================
 
-async function lightsw() {
+async function lightsw(cookie) {
+  console.log('call');
   if (document.getElementById('switch1').checked) {
-    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
+    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
       "device": "led",
       "deviceStatus": "1"
+    }, {
+      withCredentials: true,
     });
     console.log("LED switch response", res);
   } else {
-    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
+    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
       "device": "led",
       "deviceStatus": "0"
+    }, {
+      withCredentials: true,
     });
     console.log("LED switch response", res);
   }
 }
 
-async function pumpsw() {
+async function pumpsw(cookie) {
   if (document.getElementById('switch2').checked) {
-    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
+    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
       "device": "pump",
       "deviceStatus": "3"
+    }, {
+      withCredentials: true,
     });
     console.log("Pump switch response", res);
   } else {
-    const res = await axios.post(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/update-device-status`, {
+    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
       "device": "pump",
       "deviceStatus": "4"
+    }, {
+      withCredentials: true,
     });
     console.log("Pump switch response", res);
   }
 }
 
-function curtsw() {
+function curtsw(cookie) {
   if (document.getElementById('switch3').checked) {
     console.log("on")
   } else {

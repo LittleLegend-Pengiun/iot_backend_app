@@ -102,7 +102,7 @@ Statistic.getLayout = function getLayout(page) {
 
 export async function getServerSideProps(context) {
   // console.log(parsedCookies);
-  const res = await axios.get(`${process.env.API_HOST}:${process.env.HTTP_PORT}/server/get-all-chart-data/0`, {
+  const res = await axios.get(`http://localhost:8080/server/get-all-chart-data/0`, {
     headers: {
       Cookie: context.req.headers.cookie
     }
