@@ -1,4 +1,4 @@
-module github.com/LittleLegend-Pengiun/iot_backend_app
+module github.com/LittleLegend-Pengiun/iot_backend_app/server
 
 go 1.19
 
