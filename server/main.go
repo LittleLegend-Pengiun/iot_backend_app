@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/LitteLegend-Pengiun/iot_backend_app/server/goserver"
+	"github.com/LitteLegend-Pengiun/iot_backend_app/goserver"
 )
 
 func main() {
