@@ -7,8 +7,9 @@ import (
 )
 
 func RunServer(port int) error {
+	var err error
 	app := fiber.New()
-	err := app.Listen(":" + strconv.Itoa(port))
+	err = app.Listen(":" + strconv.Itoa(port))
 	if err != nil {
 		return err
 	}
