@@ -2,7 +2,10 @@ module github.com/LittleLegend-Pengiun/iot_backend_app/server
 
 go 1.19
 
-require github.com/gofiber/fiber/v2 v2.39.0
+require (
+	github.com/gofiber/fiber/v2 v2.39.0
+	github.com/vicanso/go-axios v1.4.3
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
@@ -14,5 +17,6 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.40.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
+	github.com/vicanso/http-trace v1.0.7 // indirect
 	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
 )
