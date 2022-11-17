@@ -11,12 +11,19 @@ type AdafruitAPIData struct {
 }
 
 type AdafruitData struct {
-	led  AdafruitAPIData
-	humi AdafruitAPIData
-	temp AdafruitAPIData
-	pump AdafruitAPIData
+	led  any
+	humi any
+	temp any
+	pump any
 }
 
-func DeviceID() []string {
-	return []string{"bbc-led", "bbc-humi", "bbc-temp"}
+const Username = "Tez0106"
+
+func DeviceID() AdafruitData {
+	return AdafruitData{
+		led:  "bbc-led",
+		humi: "bbc-humi",
+		temp: "bbc-temp",
+		pump: "bbc-pump",
+	}
 }
