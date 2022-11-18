@@ -1,4 +1,7 @@
-require('dotenv').config()
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 const clientTopics = {
     led: "bbc-led",
     pump: "bbc-pump",

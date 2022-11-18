@@ -6,7 +6,8 @@ const appRouter = async (server: FastifyInstance) => {
         return { status: "OK" }
     })
 
-    server.get("get-all-data", controller.getAllData)
+    server.get("get-all-data", controller.getAllData);
+    server.get("get-all-chart-data/:hours", controller.getAllChartData);
 }
 
 export default appRouter;
