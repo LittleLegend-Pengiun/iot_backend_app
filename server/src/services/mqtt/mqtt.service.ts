@@ -8,8 +8,6 @@ export const setSocket = (Socket: any) => {
     socket = Socket;
 }
 
-dotenv.config();
-
 export const mqttInit = () => {
     const client = connect({
         connectTimeout: 4000,
@@ -67,3 +65,5 @@ export const mqttPublish = (client: MqttClient, topic: string, payload: string, 
         return;
     }
 }
+
+dotenv.config();
