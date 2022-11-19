@@ -1,6 +1,5 @@
 import fastify from "fastify";
 import appRouter from "./route/app.router";
-import * as dotenv from 'dotenv';
 import { countSocketConnection } from "./services/socketio/user.counter";
 import socketioServer from 'fastify-socket.io'
 
@@ -13,5 +12,3 @@ export const serverInit = () => {
     })
     return server;
 }
-
-dotenv.config();
