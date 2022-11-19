@@ -1,6 +1,7 @@
+import { FastifyInstance } from "fastify";
 import { serverInit } from "./server"
 
-const server = serverInit();
+const server: FastifyInstance = serverInit();
 
 const main = async () => {
     try {

@@ -8,6 +8,7 @@ const appRouter = async (server: FastifyInstance) => {
 
     server.get("get-all-data", controller.getAllData);
     server.get("get-all-chart-data/:hours", controller.getAllChartData);
+    server.post("update-device-status", controller.updateDeviceStatus)
 }
 
 export default appRouter;
