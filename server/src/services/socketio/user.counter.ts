@@ -1,7 +1,9 @@
-let userNo = 0;
+import { setSocket } from "../mqtt/mqtt.service";
 
+let userNo = 0;
+let socket: any;
 export const countSocketConnection = (server: any) => {
-    const socket: any = server.io;
+    socket = server.io;
     socket.on("connection", () => {
         userNo++;
         socket.emit("users", userNo);
@@ -11,4 +13,7 @@ export const countSocketConnection = (server: any) => {
         userNo--;
         socket.emit("users", userNo);
     });
+    setSocket(socket);
 }
+
+export default socket;

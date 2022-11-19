@@ -2,9 +2,12 @@ import { config } from '../../utils/utils';
 import * as dotenv from 'dotenv';
 import { MqttClient, connect } from 'mqtt';
 import get from 'axios';
-import { serverInit } from '../../server';
 
-const server: any = serverInit;
+let socket: any;
+export const setSocket = (Socket: any) => {
+    socket = Socket;
+}
+
 dotenv.config();
 
 export const mqttInit = () => {
@@ -44,7 +47,7 @@ export const mqttInit = () => {
         );
 
         // Send data realtime
-        server.io.emit(
+        socket.emit(
             "new_data", { feedID: topic, data: new_data.data[0] }
         );
     });
