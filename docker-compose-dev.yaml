@@ -32,21 +32,23 @@ services:
       DB_PASSWORD: oohlala
     networks:
       - dadn-backend
+    ports:
+      - 3030:3000
 
-  # client:
-  #   hostname: client
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile.dev
-  #   image: dadn-client:dev
-  #   container_name: dadn-client-dev
-  #   volumes:
-  #     - /home/node/app/node_modules
-  #     - ./client:/home/node/app
-  #   networks:
-  #     - dadn-frontend
-  #   ports:
-  #     - 3031:3000
+  client:
+    hostname: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    image: dadn-client:dev
+    container_name: dadn-client-dev
+    volumes:
+      - /home/node/app/node_modules
+      - ./client:/home/node/app
+    networks:
+      - dadn-frontend
+    ports:
+      - 3031:3000
   #   environment:
   #     NEXT_PUBLIC_HTTP_API_HOST: http://localhost
   #     NEXT_PUBLIC_HTTP_API_PORT: 8080

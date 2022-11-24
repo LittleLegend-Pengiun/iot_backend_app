@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import initResponsiveChartDataListener from "../components/ResponsiveChartData";
 import { useSocketContext } from "../context/appWrapper";
+import { ServerUrl } from "../components/variable";
 
 export default function Statistic({ data }) {
   let temparrname = [];
@@ -102,7 +103,7 @@ Statistic.getLayout = function getLayout(page) {
 
 export async function getServerSideProps(context) {
   // console.log(parsedCookies);
-  const res = await axios.get(`http://localhost:8080/server/get-all-chart-data/0`, {
+  const res = await axios.get(`${ServerUrl}get-all-chart-data/0`, {
     headers: {
       Cookie: context.req.headers.cookie
     }

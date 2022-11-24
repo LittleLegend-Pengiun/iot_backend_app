@@ -2,6 +2,7 @@ import styles from "../styles/ControlContent.module.css";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow, faDroplet, faLightbulb, faPersonBooth, faFan } from "@fortawesome/free-solid-svg-icons";
+import { ServerUrl } from "./variable";
 
 export default function ControlContent({controlState}) {
 
@@ -44,7 +45,7 @@ export default function ControlContent({controlState}) {
 async function lightsw(cookie) {
   console.log('call');
   if (document.getElementById('switch1').checked) {
-    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
+    const res = await axios.post(`${ServerUrl}update-device-status`, {
       "device": "led",
       "deviceStatus": "1"
     }, {
@@ -52,7 +53,7 @@ async function lightsw(cookie) {
     });
     console.log("LED switch response", res);
   } else {
-    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
+    const res = await axios.post(`${ServerUrl}update-device-status`, {
       "device": "led",
       "deviceStatus": "0"
     }, {
@@ -64,7 +65,7 @@ async function lightsw(cookie) {
 
 async function pumpsw(cookie) {
   if (document.getElementById('switch2').checked) {
-    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
+    const res = await axios.post(`${ServerUrl}update-device-status`, {
       "device": "pump",
       "deviceStatus": "3"
     }, {
@@ -72,7 +73,7 @@ async function pumpsw(cookie) {
     });
     console.log("Pump switch response", res);
   } else {
-    const res = await axios.post(`http://localhost:8080/server/update-device-status`, {
+    const res = await axios.post(`${ServerUrl}update-device-status`, {
       "device": "pump",
       "deviceStatus": "4"
     }, {

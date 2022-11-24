@@ -6,6 +6,7 @@ import axios from 'axios';
 import initResponsiveDataListener from "../components/ResponsiveData";
 import { useEffect, useState } from "react";
 import { useSocketContext } from "../context/appWrapper";
+import { ServerUrl } from "../components/variable";
 
 export default function CurrentState({data}) {
   const [state, setState] = useState(data);
@@ -46,7 +47,7 @@ CurrentState.getLayout = function getLayout(page) {
 
 export async function getServerSideProps(context) {
   // console.log(parsedCookies);
-  const res = await axios.get(`http://localhost:8080/server/get-all-data`, {
+  const res = await axios.get(`${ServerUrl}get-all-data`, {
     headers: {
       Cookie: context.req.headers.cookie
     }

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/router'
+import { ServerUrl } from "./variable";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -14,8 +15,8 @@ export default function LoginForm() {
   const Redirect = async () => {
     //will do some authentication work here before navigate user to the main page
     try {
-      console.log(`http://localhost:8080/server/users/authenticate`);
-      const res = await axios.post(`http://localhost:8080/server/users/authenticate`, {
+      console.log(`${ServerUrl}users/authenticate`);
+      const res = await axios.post(`${ServerUrl}users/authenticate`, {
         "username": usernameInput,
         "password": passwordInput
       }, {
