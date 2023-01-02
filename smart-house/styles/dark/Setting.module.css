@@ -1,0 +1,124 @@
+.page{
+  width: 82vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #3a3a3a;
+ }
+
+ .card{
+  width: 100%;
+  padding: 1.5vw 4.5vw 1vw 4.5vw; 
+  background-color: #3a3a3a;
+  color: rgb(255, 255, 255);
+ }
+
+
+ #statenametext {
+  font-size: 1.3vw;
+  line-height: 2vw;
+}
+
+#statevaltext {
+  font-weight: bold !important;
+  line-height: 2vw;
+  font-size: 1.6vw;
+}
+
+.container {
+  grid-template-columns: auto auto;
+  padding: 0vw 1vw 0vw 1vw !important;
+  background-color: #1d1d1d;
+}
+
+.item {
+  padding: 1vw !important;
+  font-size: 1.5vw;
+  background-color: #1d1d1d;
+}
+
+#toggleboxlable {
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  font-weight: 500;
+  font-size: 1.5vw;
+}
+
+#togglebox {
+  background-color: #3a3a3a;
+  border-radius: 1.5vw;
+  padding: 1.5vw;
+  margin-bottom: 1.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* toggle in label designing */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 5vw;
+  height: 2.5vw;
+  background-color: #47AC36;
+  border-radius: 2vw;
+  overflow: hidden;
+  vertical-align: middle;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.toggle:hover {
+  background-color: #41da27;
+  cursor: pointer;
+}
+
+/* After slide changes */
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: #1d1d1d;
+  top: 0.25vw;
+  left: 2.7vw;
+  transition: all 0.5s;
+}
+
+/* Checkbox vanished */
+.checkbox {
+  display: none;
+}
+
+.option {
+  background-color: #1d1d1d;
+  color:rgb(255, 255, 255);
+  border: none;
+  font-weight: 500;
+  font-size: 1vw;
+  height: 2.5vw;
+  width: 8vw;
+  border-radius: 0.5vw;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  text-align: center;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.option:hover {
+  background-color: #555555;
+  color:rgb(255, 255, 255);
+  border: none;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.op2 {
+  border: none;
+  line-height: 1000px;
+}

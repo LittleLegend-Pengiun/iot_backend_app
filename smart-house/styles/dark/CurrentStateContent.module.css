@@ -1,0 +1,24 @@
+#statenametext {
+  font-size: 1.3vw;
+  line-height: 2vw;
+  font-weight: 400;
+}
+
+#statevaltext {
+  font-weight: 700;
+  line-height: 2vw;
+  font-size: 1.6vw;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 0px 20px;
+  background-color: #1d1d1d;
+}
+
+.item{
+  padding: 20px 0px 20px 50px;
+  font-size: x-large;
+  background-color: #1d1d1d;
+}

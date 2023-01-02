@@ -1,0 +1,98 @@
+.drawer {
+    display: none;
+    flex-direction: column;
+    width: 100vw;
+    background-color: #1d1d1d;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    transition-timing-function: ease;
+}
+
+.userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(255, 255, 255);
+}
+
+#vwbox {
+    height: 0.25vw !important;
+}
+
+#namebox {
+    font-size: 1.8vw;
+    font-weight: bold;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+#namebox:hover {
+    color: rgb(0, 70, 184);
+    cursor: pointer;
+}
+
+#imgStyle {
+    border-radius: 50%;
+    width: 12vw;
+    height: 12vw;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+#imgStyle:hover {
+    /*box-shadow: 0vw 0px 0.4vw 0.2vw #a7a7a7;*/
+    cursor: pointer;
+    padding: 0.2vw;
+    background-color: #1d1d1d;
+}
+
+.drawer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none !important;
+    margin-inline: auto;
+}
+
+.drawer li {
+    display: block;
+    width: 80%;
+    padding: 1vw;
+    margin-bottom: 0.6vw;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.2vw;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    border-radius: 1vw;
+}
+
+.drawer li:hover {
+    border-radius: 1vw;
+    background-color: #3b3b3b;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    /* Sit on top of the page content */
+    /* Hidden by default */
+    /* Full width (cover the whole page) */
+    height: 100%;
+    width: 0%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.808);
+    /* Black background with opacity */
+    z-index: 2;
+    overflow-x: hidden;
+    transition: 1s;
+}

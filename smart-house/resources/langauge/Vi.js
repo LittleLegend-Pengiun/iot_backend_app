@@ -1,0 +1,32 @@
+export default function () {
+  return {
+    overview: 'Tổng Quan',
+    control: 'Điều Khiển',
+    statistic: 'Thống Kê',
+    setting: 'Cài Đặt',
+    house_state: "Trạng Thái Nhà",
+    device_state: "Trạng Thái Thiết Bị",
+    control_panel: 'Bảng Điều Khiển',
+    temperature: 'Nhiệt Độ',
+    humidity: 'Độ Ẩm',
+    lamp: 'Đèn',
+    fan: 'Quạt',
+    curtain: 'Rèm',
+    max: 'Cao Nhất',
+    min: 'Thấp Nhất',
+    average: 'Trung Bình',
+    on: 'Mở',
+    off: 'Tắt',
+    closed: 'Đóng',
+    language: 'Ngôn Ngữ',
+    darkm: 'Giao Diện Tối',
+    enn: "Tiếng Anh",
+    vii: 'Tiếng Việt',
+    admin: 'Quản Trị',
+    fname: 'Họ Và Tên',
+    abutton: 'Thêm Tài Khoản',
+    passwd: 'Mật Khẩu',
+    cre: 'Thêm',
+    back: 'Trở Lại'
+  }
+}

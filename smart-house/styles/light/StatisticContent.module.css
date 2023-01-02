@@ -1,0 +1,102 @@
+#statenametext {
+  font-size: 1.3vw;
+  line-height: 2vw;
+}
+
+#statevaltext {
+  font-weight: bold !important;
+  line-height: 2vw;
+  font-size: 1.6vw;
+}
+
+.container {
+  grid-template-columns: auto auto;
+  padding: 0vw 1vw 0vw 1vw;
+}
+
+.item {
+  padding: 1vw;
+  font-size: 1.5vw;
+  height: 10vw;
+  display: flex;
+}
+
+#toggleboxlable {
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  font-weight: 500;
+}
+
+#togglebox {
+  background-color: #ffffff;
+  border-radius: 1.5vw;
+  padding: 1.5vw;
+  margin-bottom: 1.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* toggle in label designing */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 5vw;
+  height: 2.5vw;
+  background-color: rgb(255, 113, 113);
+  border-radius: 2vw;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+/* After slide changes */
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  top: 0.25vw;
+  left: 0.3vw;
+  transition: all 0.5s;
+}
+
+/* Checkbox checked effect */
+.checkbox:checked+.toggle::after {
+  left: 2.7vw
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked+.toggle {
+  background-color: rgb(118, 255, 118);
+}
+
+/* Checkbox vanished */
+.checkbox {
+  display: none;
+}
+
+#chartstyle {
+  background-color: #c1c1c1;
+  border-radius: 1vw;
+  padding: 0.6vw 1vw 0.6vw 1vw;
+  margin-right: 2.5vw;
+  width: 50vw;
+}
+
+.avgbox {
+  font-size: 1.2vw;
+  margin-top: -0.7vw;
+}
+
+.avgboxl {
+  display: inline !important;
+  font-size: 1vw;
+}
+
+.avgboxr {
+  display: inline !important;
+  font-weight: bold;
+  font-size: 1.5vw;
+  line-height: 1vw !important; 
+}

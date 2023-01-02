@@ -1,0 +1,24 @@
+.container{
+  border: 0.2vw solid #252525;
+  width: 100%;
+  padding: 1.8vw;
+  box-shadow: -8px 8px 6px #2c2c2c;
+  border-radius: 1.5vw;
+  margin-top: 2vw;
+  color: #ffffff;
+}
+
+.content{
+  background-color: #1d1d1d;
+  border-radius: 1.5vw;
+  padding: 1vw 0vw 1vw 0.1vw;
+  margin-top: 2vw;
+  color: #ffffff;
+}
+
+.title{
+  font-weight: bold;
+  font-size: 1.6vw;
+  margin: 0.4vw 0vw 0.4vw 1.5vw;
+  color: #ffffff;
+}

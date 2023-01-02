@@ -1,0 +1,32 @@
+export default function () {
+  return {
+    overview: 'Overview',
+    control: 'Control',
+    statistic: 'Statistics',
+    setting: 'Setting',
+    house_state: "House State",
+    device_state: "Device State",
+    control_panel: 'Control Panel',
+    temperature: 'Temperature',
+    humidity: 'Humidity',
+    lamp: 'Lamp',
+    fan: 'Fan',
+    curtain: 'Curtain',
+    max: 'Max',
+    min: 'Min',
+    average: 'Average',
+    on: 'On',
+    off: 'Off',
+    closed: 'Closed',
+    language: 'Language',
+    darkm: 'Dark Mode',
+    enn: "English",
+    vii: 'Vietnamese',
+    admin: 'Admin',
+    fname: 'Full Name',
+    abutton: 'Add Account',
+    passwd: 'Password',
+    cre: 'Add',
+    back: 'Back'
+  }
+}

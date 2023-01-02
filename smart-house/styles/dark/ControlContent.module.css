@@ -1,0 +1,92 @@
+#statenametext {
+  font-size: 1.3vw;
+  line-height: 2vw;
+}
+
+#statevaltext {
+  font-weight: bold !important;
+  line-height: 2vw;
+  font-size: 1.6vw;
+}
+
+.container {
+  grid-template-columns: auto auto;
+  padding: 0vw 1vw 0vw 1vw;
+  background-color: #1d1d1d;
+}
+
+.item {
+  padding: 1vw;
+  font-size: 1.5vw;
+  background-color: #1d1d1d;
+}
+
+#toggleboxlable {
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  font-weight: 500;
+}
+
+#togglebox {
+  background-color: #3a3a3a;
+  border-radius: 1.5vw;
+  padding: 1.5vw;
+  margin-bottom: 1.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* toggle in label designing */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 5vw;
+  height: 2.5vw;
+  background-color: #D33535;
+  border-radius: 2vw;
+  overflow: hidden;
+  vertical-align: middle;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.toggle:hover {
+  background-color: #ff4444;
+  cursor: pointer;
+}
+
+/* After slide changes */
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  background-color: #1d1d1d;
+  top: 0.25vw;
+  left: 0.3vw;
+  transition: all 0.5s;
+}
+
+/* Checkbox checked effect */
+.checkbox:checked+.toggle::after {
+  left: 2.7vw
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked+.toggle {
+  background-color: #47AC36;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked+.toggle:hover {
+  background-color: #41da27;
+  cursor: pointer;
+}
+
+/* Checkbox vanished */
+.checkbox {
+  display: none;
+}
