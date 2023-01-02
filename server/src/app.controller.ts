@@ -18,8 +18,8 @@ export class AppController {
   }
 
   @Get('/get-all-data')
-  @UseGuards(VerifyGuard)
-  @UseFilters(UnauthorizedExceptionFilter)
+//  @UseGuards(VerifyGuard)
+//  @UseFilters(UnauthorizedExceptionFilter)
   @HttpCode(200)
   async getAllData(): Promise<any> {
     const dict: Object = {};
@@ -38,8 +38,8 @@ export class AppController {
   }
 
   @Get('/get-all-chart-data/:hours')
-  @UseGuards(VerifyGuard)     
-  @UseFilters(UnauthorizedExceptionFilter)
+//  @UseGuards(VerifyGuard)     
+//  @UseFilters(UnauthorizedExceptionFilter)
   @HttpCode(200)
   async getAllChartData(@Param('hours') hours: number): Promise<any> {
     const dict: Object = {};
@@ -63,10 +63,11 @@ export class AppController {
   }
   
   @Post('/update-device-status')
-  @UseGuards(VerifyGuard)
-  @UseFilters(UnauthorizedExceptionFilter)
+//  @UseGuards(VerifyGuard)
+//  @UseFilters(UnauthorizedExceptionFilter)
   async updateData(@Req() req: Request, @Res() res: Response) {
-    let feedID: string = undefined;
+    let feedID: string = this.settings.feedKeyDetail[`${req.body.device}`];
+    /*
     if (req.body.device == "led") 
       feedID = this.settings.feedKeyDetail.led;
     else if (req.body.device == "pump") 
@@ -75,7 +76,7 @@ export class AppController {
       feedID = this.settings.feedKeyDetail.temp;
     else if (req.body.device == "humi") 
       feedID = this.settings.feedKeyDetail.humi;
-    
+    */
     this.mqttService.publish(
       `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
         if (err) return res.status(201).send(err.toString());

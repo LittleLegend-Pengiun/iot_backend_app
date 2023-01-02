@@ -11,8 +11,6 @@ export default function Login() {
           <p>BK SMART HOUSE</p>
         </div>
       </div>
-
-
     </div>
     <div style={{ width: "40%", padding: "5%", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div style={{fontWeight:"bold", fontSize:"30px"}}>WELCOME HOME!</div>

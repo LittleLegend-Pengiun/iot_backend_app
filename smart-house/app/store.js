@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import languageReducer from '../feature/languageSlice';
-import darkmodeReducer from '../feature/darkmodeSlice';
+import themeReducer from '../feature/themeSlice';
 
 export default configureStore({
-  reducer:{
+  reducer: {
     language: languageReducer,
-    darkmode: darkmodeReducer
+    theme: themeReducer
   }
 })

@@ -1,65 +1,11 @@
-import styles from "../styles/light/CurrentStateContent.module.css";
-import styles2 from "../styles/dark/CurrentStateContent.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow, faDroplet, faLightbulb, faMattressPillow, faFan } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { changeToVi, changeToEng } from "../feature/languageSlice";
-import { changeToLi, changeToDar } from "../feature/darkmodeSlice";
-import { useEffect } from "react";
-
-// Used to store darkmode state
-var darkst = 0;
+import { useSelector } from "react-redux";
 
 export default function CurrentStateContent({ list_state }) {
 
-  {/* Change Dark Mode and Language Block ===================================================================== */ }
-  {/* ========================================================================================================= */ }
   const Lang = useSelector(state => state.language);
-  const DM = useSelector(state => state.darkmode);
-  const dispatch = useDispatch();
-  const dispatch2 = useDispatch();
-
-  useEffect(() => {
-    {/* Get language state from localstorage, change language by dispatch and set drop box value */ }
-    const iniLanguage = localStorage.getItem('language');
-    changeLang(iniLanguage);
-    const selectedOption = document.getElementById(iniLanguage);
-    if (selectedOption != null) { selectedOption.setAttribute("selected", "") };
-    {/* Get Dark or Light mode from LocalStorage and change language by dispatch. 0 = Light, 1 = Dark */ }
-    darkst = localStorage.getItem("darkstate");
-    changeDmode(darkst);
-  }, [])
-
-  {/* Function to switch language */ }
-  const changeLang = (lang) => {
-    switch (lang) {
-      case "vi":
-        dispatch(changeToVi())
-        break
-      case "eng":
-        dispatch(changeToEng())
-        break
-    }
-  }
-
-  {/* Function to switch darkmode */ }
-  const changeDmode = (lang) => {
-    switch (lang) {
-      case "0":
-        dispatch2(changeToLi())
-        break
-      case "1":
-        dispatch2(changeToDar())
-        break
-    }
-  }
-  {/* Change Dark Mode and Language Block ===================================================================== */ }
-  {/* ========================================================================================================= */ }
-
-
-  //const Icon = [faTemperatureLow, faDroplet]
-  //let indexIcon = 0;
-
+  const Styles = (useSelector(state => state.theme)).value().currentStateContent;
 
   const getIcon = (key) => {
     switch (key) {
@@ -105,15 +51,13 @@ export default function CurrentStateContent({ list_state }) {
     return value;
   }
 
-
-
   return (
-    <div className={darkst == 0 ? styles.container : styles2.container}>
+    <div className={Styles.container}>
       {list_state.map((state) => {
-        return <div className={darkst == 0 ? styles.item : styles2.item}>
+        return <div className={Styles.item} key={state.id}>
           <FontAwesomeIcon icon={getIcon(state.key)} style={{ width: "2vw", height: "2vw", marginRight: "3vw" }} />
-          <a id={darkst == 0 ? styles.statenametext : styles2.statenametext}> {getStateName(state.key)}: &nbsp; </a>
-          <a id={darkst == 0 ? styles.statevaltext : styles2.statevaltext}> {getStateVal(state.val)}</a>
+          <a id={Styles.statenametext}> {getStateName(state.key)}: &nbsp; </a>
+          <a id={Styles.statevaltext}> {getStateVal(state.val)}</a>
         </div>
       })}
     </div>

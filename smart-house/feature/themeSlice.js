@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Li, Dar } from '../resources/darkmode';
 
-const darkmodeSlice = createSlice({
-  name: 'darkmode',
+const themeSlice = createSlice({
+  name: 'theme',
   initialState: { value: Li },
   reducers: {
     changeToLi: state => {
@@ -14,6 +14,6 @@ const darkmodeSlice = createSlice({
   }
 })
 
-export const { changeToLi, changeToDar } = darkmodeSlice.actions
+export const { changeToLi, changeToDar } = themeSlice.actions
 
-export default darkmodeSlice.reducer;
+export default themeSlice.reducer;

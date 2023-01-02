@@ -42,7 +42,7 @@
 }
 
 .cover{
-  background-image: url("../assets/MordernHouse.jpg");
+  background-image: url("../../assets/MordernHouse.jpg");
   background-size: cover;
   width: 60%;
 }

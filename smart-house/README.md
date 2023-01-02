@@ -11,39 +11,6 @@
   <br>
   <img src="../screenshot/3.PNG">
   <br>
-  <br>
-  <img src="../screenshot/4.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/5.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/6.PNG">
-  <br>
-</p>
-
-<br>
-Now with <b>Dark Mode</b> and <b>Multi-Language</b> support.
-
-<p align="center">
-  <br>
-  <img src="../screenshot/9.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/8.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/10.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/7.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/11.PNG">
-  <br>
-  <br>
-  <img src="../screenshot/12.PNG">
-  <br>
 </p>
 
 

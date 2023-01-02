@@ -69,7 +69,7 @@
 }
 
 .toggle:hover {
-  background-color: #41da27;
+  background-color: #47AC36;
   cursor: pointer;
 }
 
@@ -91,6 +91,9 @@
   display: none;
 }
 
+
+
+
 .option {
   background-color: #1d1d1d;
   color:rgb(255, 255, 255);
@@ -100,7 +103,6 @@
   height: 2.5vw;
   width: 8vw;
   border-radius: 0.5vw;
-  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
