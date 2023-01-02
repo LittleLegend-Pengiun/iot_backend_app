@@ -54,7 +54,7 @@ export default function CurrentStateContent({ list_state }) {
   return (
     <div className={Styles.container}>
       {list_state.map((state) => {
-        return <div className={Styles.item} key={state.id}>
+        return <div className={Styles.item} key={state.key}>
           <FontAwesomeIcon icon={getIcon(state.key)} style={{ width: "2vw", height: "2vw", marginRight: "3vw" }} />
           <a id={Styles.statenametext}> {getStateName(state.key)}: &nbsp; </a>
           <a id={Styles.statevaltext}> {getStateVal(state.val)}</a>

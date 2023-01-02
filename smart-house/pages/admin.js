@@ -10,22 +10,22 @@ export default function Admin({ data }) {
   const Lang = useSelector(state => state.language);
   const Styles = (useSelector(state => state.theme)).value().admin;
 
-  const [ users, setUsers ] = useState(data);
+  const [users, setUsers] = useState(data);
   console.log(users);
-  
+
   async function addaccount() {
     var ID = document.getElementById("idinput").value; //username from box
     var pass = document.getElementById("passinput").value; //password from box
     var name = document.getElementById("nameinput").value; //fullname from box
     console.log(ID + ", " + pass + ", " + name);
-    const res = await axios.post('http://localhost:8080/server/users/create', { username: `${name}`, email: "", password: `${pass}`, age: 20 });
+    const res = await axios.post('http://localhost:10080/server/users/create', { username: `${name}`, email: "", password: `${pass}`, age: 20 });
     console.log(res);
     await getAllData();
     addaccountpanelc();
   }
 
   const getAllData = async () => {
-    const res = await axios.get('http://localhost:8080/server/users');
+    const res = await axios.get('http://localhost:10080/server/users');
     const newData = res.data;
     setUsers(newData)
   }
@@ -104,7 +104,7 @@ function addaccountpanelc() {
 }
 
 export async function getServerSideProps(context) {
-  const res = await axios.get('http://localhost:8080/server/users');
+  const res = await axios.get('http://localhost:10080/server/users');
   const newData = res.data;
   // console.log(res.data.isError);
   if (newData.isError) {
@@ -116,7 +116,7 @@ export async function getServerSideProps(context) {
     }
   }
   return {
-      props: { data:newData }
+    props: { data: newData }
   };
 }
 // Add Account Button Clicked (DO STUFF HERE) ================================================================

@@ -34,22 +34,21 @@ services:
       - dadn-backend
     ports:
       - 3030:3000
-
-  nginx:
-    hostname: reverse-proxy
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.dev
-    image: hoanganhleboy/dadn-router:dev
-    container_name: dadn-router-dev
-    volumes:
-      - ./nginx/development.conf:/etc/nginx/conf.d/default.conf
-    restart: unless-stopped
-    ports:
-      - 8080:80
-      - 8081:81
-    networks:
-      - dadn-backend
+  # nginx:
+  #   hostname: reverse-proxy
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: Dockerfile.dev
+  #   image: hoanganhleboy/dadn-router:dev
+  #   container_name: dadn-router-dev
+  #   volumes:
+  #     - ./nginx/development.conf:/etc/nginx/conf.d/default.conf
+  #   restart: unless-stopped
+  #   ports:
+  #     - 10080:80
+  #     - 10081:81
+  #   networks:
+  #     - dadn-backend
 
 volumes:
   dadn-postgres-dev-db:

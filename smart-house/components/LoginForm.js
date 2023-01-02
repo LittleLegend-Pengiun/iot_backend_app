@@ -16,17 +16,17 @@ export default function LoginForm() {
     //will do some authentication work here before navigate user to the main page
     try {
       //console.log(`${ServerUrl}users/authenticate`);
-      const res = await axios.post(`http://localhost:3030/users/authenticate`, {
+      const res = await axios.post(`${ServerUrl}users/authenticate`, {
         "username": usernameInput,
         "password": passwordInput
       }, {
         withCredentials: true
       })
-      const {data} = res;
-      console.log(res.error);
+      const { data } = res;
+      console.log("login res:", res);
       setCookie("jwt-token", data["jwt-token"]);
       router.push("/control");
-    } catch(e) {
+    } catch (e) {
       // const {response} = e;
       // if(response.status) {
       //   alert("Login failed, invalid credential");

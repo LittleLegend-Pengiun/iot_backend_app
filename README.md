@@ -24,7 +24,7 @@ Note: Run each command one after the other.
 
 ## Running the app
 
-After the installation complete, the backend server is available in port 8080.
+After the installation complete, the backend server is available in port 10080.
 
 ## Adafruit Dashboard
 
