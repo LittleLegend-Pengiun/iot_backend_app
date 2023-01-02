@@ -7,16 +7,19 @@ import { MqttService } from './mqtt/mqtt.service';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { VerifyGuard } from './guards/verify.guard';
+import { AutomationSchedulerService } from './schedulers/automation-scheduler/automation-scheduler.service';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
-    UsersModule, 
+    ScheduleModule.forRoot(),
+    UsersModule,
     HttpModule,
     ConfigModule.forRoot({
       envFilePath: 'main.env'
     })
   ],
   controllers: [AppController, AdminsController],
-  providers: [SocketIoGateway, MqttService, VerifyGuard],
+  providers: [SocketIoGateway, MqttService, VerifyGuard, AutomationSchedulerService],
 })
-export class AppModule {}
+export class AppModule { }

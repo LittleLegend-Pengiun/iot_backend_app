@@ -8,7 +8,10 @@ import { Config } from './mqtt.config';
 @Injectable()
 export class MqttService implements OnModuleInit {
     mqttClient: MqttClient;
-    constructor(private socketIO: SocketIoGateway) {}
+    settings: any;
+    constructor(private socketIO: SocketIoGateway, private httpServices: HttpService) {
+        this.settings = (new Config).settings;
+    }
 
     onModuleInit() {
         const settings = (new Config).settings;
@@ -41,7 +44,7 @@ export class MqttService implements OnModuleInit {
                 `https://io.adafruit.com/api/v2/${topic}/data`
             );
 
-            // Send data realtime
+            // Send data realtime to Next Client with Websocket
             this.socketIO.server.emit(
                 "new_data", { feedID: topic, data: new_data.data[0] }
             );
@@ -52,7 +55,7 @@ export class MqttService implements OnModuleInit {
         });
     }
 
-    publish(topic: string, payload: string, callback = (err) => {}) {
+    publish(topic: string, payload: string, callback = (err) => { }) {
         try {
             if (topic == undefined || payload == undefined) {
                 callback(Error("Cannot publish data!"));
