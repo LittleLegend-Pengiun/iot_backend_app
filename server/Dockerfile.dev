@@ -21,5 +21,5 @@ WORKDIR /home/node/app
 COPY --chown=node:node . .
 COPY --from=builder /app/node_modules /home/node/app/app_modules
 
-RUN npm i @nestjs/cli
+RUN npm i
 CMD ["yarn", "run", "start:dev"]

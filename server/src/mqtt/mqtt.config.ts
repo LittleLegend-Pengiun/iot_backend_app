@@ -6,25 +6,34 @@ import { Global, Module } from "@nestjs/common";
 })
 export class Config {
     clientTopics = {
+        buzzer: "bbc-buzzer",
+        curtain: "bbc-curtain",
+        fan: "bbc-fan",
+        gas: "bbc-gas",
+        humi: "bbc-humi",
         led: "bbc-led",
-        pump: "bbc-pump",
-        temp: "bbc-temp",
-        humi: "bbc-humi"
+        temp: "bbc-temp"
     };
     settings = {
         username: process.env.ADAFRUIT_USERNAME,
         activeKey: process.env.ADAFRUIT_KEY,
         clientTopics: [
+            this.clientTopics.buzzer,
+            this.clientTopics.curtain,
+            this.clientTopics.fan,
+            this.clientTopics.gas,
             this.clientTopics.led,
-            this.clientTopics.pump,
             this.clientTopics.temp,
             this.clientTopics.humi
         ],
         feedKey: [
+            "bbc-buzzer",
+            "bbc-curtain",
+            "bbc-fan",
+            "bbc-gas",
+            "bbc-humi",
             "bbc-led",
-            "bbc-pump",
-            "bbc-temp",
-            "bbc-humi"
+            "bbc-temp"
         ],
         feedKeyDetail: this.clientTopics
     }

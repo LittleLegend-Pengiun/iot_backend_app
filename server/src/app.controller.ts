@@ -88,7 +88,8 @@ export class AppController {
     if (req.body.token != process.env.JWT_SECRET) return res.status(HttpStatus.FORBIDDEN).send({
       Error: "API access denied!"
     });
-    let feedID: string = undefined;
+    let feedID: string = this.settings.feedKeyDetail[`${req.body.device}`];
+    /*
     if (req.body.device == "led") 
       feedID = this.settings.feedKeyDetail.led;
     else if (req.body.device == "pump") 
@@ -96,7 +97,7 @@ export class AppController {
     else if (req.body.device == "temp") 
       feedID = this.settings.feedKeyDetail.temp;
     else if (req.body.device == "humi") 
-      feedID = this.settings.feedKeyDetail.humi;
+      feedID = this.settings.feedKeyDetail.humi;*/
     
     this.mqttService.publish(
       `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
