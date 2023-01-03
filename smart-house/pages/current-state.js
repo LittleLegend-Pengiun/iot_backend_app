@@ -21,9 +21,18 @@ export default function CurrentState({ data }) {
   const Lang = useSelector(state => state.language);
   const Styles = (useSelector(state => state.theme)).value().currentState;
 
-  let dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] }, { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] }]
+  let dataHouseState = [
+    { key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] },
+    { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] },
+    { key: "gas", name: "Nồng độ gas", val: state["gas"][0]["value"] }
+  ];
 
-  let dataDeviceState = [{ key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "MỞ" }, { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 3 ? "ĐÓNG" : "MỞ" }, { key: "curtain", name: "Rèm", val: state["curtain"][0]["value"] == 8 ? "ĐÓNG" : "MỞ" }]
+  let dataDeviceState = [
+    { key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "MỞ" },
+    { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 3 ? "ĐÓNG" : "MỞ" },
+    { key: "curtain", name: "Rèm", val: state["curtain"][0]["value"] == 8 ? "ĐÓNG" : "MỞ" },
+    { key: "buzzer", name: "Cảnh báo cháy nổ", val: state["buzzer"][0]["value"] == 6 ? "ĐÓNG" : "MỞ" }
+  ]
 
   return (<div className={Styles.page}>
     <div className={Styles.card}>

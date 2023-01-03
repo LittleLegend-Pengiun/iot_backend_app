@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTemperatureLow, faDroplet, faLightbulb, faMattressPillow, faFan } from "@fortawesome/free-solid-svg-icons";
+import { faTemperatureLow, faDroplet, faLightbulb, faMattressPillow, faFan, faGasPump, faBell } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 
 export default function CurrentStateContent({ list_state }) {
@@ -19,6 +19,10 @@ export default function CurrentStateContent({ list_state }) {
         return faFan;
       case "curtain":
         return faMattressPillow;
+      case "gas":
+        return faGasPump;
+      case "buzzer":
+        return faBell;
     }
     return;
   }
@@ -35,6 +39,10 @@ export default function CurrentStateContent({ list_state }) {
         return Lang.value().fan;
       case "curtain":
         return Lang.value().curtain;
+      case "gas":
+        return Lang.value().gas;
+      case "buzzer":
+        return Lang.value().buzzer;
     }
     return;
   }
