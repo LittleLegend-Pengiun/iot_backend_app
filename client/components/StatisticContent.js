@@ -11,10 +11,10 @@ export default function StatisticContent({ data, max, min, avg }) {
     <div className={styles.container}>
       <div className={styles.item}>
         <a id={styles.chartstyle}>
-        <Line data={data} width={400} height={400} options={options} />
+          <Line data={data} width={400} height={400} options={options} />
         </a>
         <div className={styles.avgbox}>
-          <p> 
+          <p>
             <a className={styles.avgboxl}>Cao nhất: &nbsp;</a>
             <a className={styles.avgboxr}>{max}</a>
           </p>

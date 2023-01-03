@@ -28,14 +28,15 @@ export default function Statistic({ data }) {
     temparrname: temparrname,
     temparrvalue: temparrvalue,
     humarrname: humarrname,
-    humarrvalue: humarrvalue
+    humarrvalue: humarrvalue,
+    datatemp: datatemp,
+    datahumid: datahumid
   })
 
   const socket = useSocketContext();
   useEffect(() => {
     initResponsiveChartDataListener(state, setState, socket);
-  },[])
-
+  }, [])
   const datatemp = {
     labels: state.temparrname,
     datasets: [
@@ -80,13 +81,14 @@ export default function Statistic({ data }) {
     ]
   };
 
+
   return (<div className={styles.page}>
     <div className={styles.card}>
       <Card title="Nhiệt độ">
-        <StatisticContent data={datatemp} max={getmaxx(state.temparrvalue) + " °C"} min={getminn(state.temparrvalue) + " °C"} avg={getavg(state.temparrvalue) + " °C"}></StatisticContent>
+        <StatisticContent data={state.datatemp} max={getmaxx(state.temparrvalue) + " °C"} min={getminn(state.temparrvalue) + " °C"} avg={getavg(state.temparrvalue) + " °C"}></StatisticContent>
       </Card>
       <Card title="Độ ẩm">
-        <StatisticContent data={datahumid} max={getmaxx(state.humarrvalue) + " %"} min={getminn(state.humarrvalue) + " %"} avg={getavg(state.humarrvalue) + " %"}></StatisticContent>
+        <StatisticContent data={state.datahumid} max={getmaxx(state.humarrvalue) + " %"} min={getminn(state.humarrvalue) + " %"} avg={getavg(state.humarrvalue) + " %"}></StatisticContent>
       </Card>
     </div>
   </div >)
@@ -118,7 +120,7 @@ export async function getServerSideProps(context) {
     }
   }
   return {
-      props: { data:res.data }
+    props: { data: res.data }
   };
 }
 

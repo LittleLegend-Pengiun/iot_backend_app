@@ -18,7 +18,7 @@ export default function StatisticContent({ data, max, min, avg }) {
   const Lang = useSelector(state => state.language);
   const Styles = (useSelector(state => state.theme)).value().statisticContent;
 
-  
+
   return (
     <div className={Styles.container}>
       <div className={Styles.item}>

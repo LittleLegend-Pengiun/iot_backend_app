@@ -8,19 +8,19 @@ import { useEffect, useState } from "react";
 import { useSocketContext } from "../context/appWrapper";
 import { ServerUrl } from "../components/variable";
 
-export default function CurrentState({data}) {
+export default function CurrentState({ data }) {
   const [state, setState] = useState(data);
-  const socket =  useSocketContext();
+  const socket = useSocketContext();
 
   useEffect(() => {
     initResponsiveDataListener(state, setState, socket);
   }
-  , [])
+    , [])
 
 
   let dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] }, { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] }]
 
-  let dataDeviceState = [{ key:"lamp", name: "Đèn", val: state["led"][0]["value"] == 0? "TẮT":"BẬT" }, {key:"fan", name: "Bơm", val: state["pump"][0]["value"] == 3? "MỞ":"ĐÓNG" }, { key:"curtain", name: "Rèm", val: "ĐÓNG" }]
+  let dataDeviceState = [{ key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "BẬT" }, { key: "fan", name: "Bơm", val: state["pump"][0]["value"] == 3 ? "MỞ" : "ĐÓNG" }, { key: "curtain", name: "Rèm", val: "ĐÓNG" }]
 
   return (<div className={styles.page}>
     <div className={styles.card}>
@@ -62,6 +62,6 @@ export async function getServerSideProps(context) {
     }
   }
   return {
-      props: { data:res.data }
+    props: { data: res.data }
   };
 }
