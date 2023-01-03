@@ -16,11 +16,18 @@ const initResponsiveDataListener = (state, setState, socket) => {
         led: [...state.led],
         temp: [...state.temp],
         humi: [...state.humi],
+        buzzer: [...state.buzzer]
     };
 
     socket.on('new_data', (msg) => {
         // Add buzzer, gas later
-        if (msg.feedID == feedKey.temp || msg.feedID == feedKey.curtain || msg.feedID == feedKey.led || msg.feedID == feedKey.humi || msg.feedID == feedKey.fan) {
+        if (msg.feedID == feedKey.temp
+            || msg.feedID == feedKey.curtain
+            || msg.feedID == feedKey.led
+            || msg.feedID == feedKey.humi
+            || msg.feedID == feedKey.fan
+            || msg.feedID == feedKey.buzzer
+        ) {
             console.log('new_data called', msg);
             let item = msg.data;
 
@@ -29,6 +36,7 @@ const initResponsiveDataListener = (state, setState, socket) => {
             else if (msg.feedID == feedKey.led) newstate["led"] = [item].concat(state.led);
             else if (msg.feedID == feedKey.humi) newstate["humi"] = [item].concat(state.humi);
             else if (msg.feedID == feedKey.fan) newstate["fan"] = [item].concat(state.fan);
+            else if (msg.feedID == feedKey.buzzer) newstate["buzzer"] = [item].concat(state.buzzer);
 
 
             console.log('new_data state', state);

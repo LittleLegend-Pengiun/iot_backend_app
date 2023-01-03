@@ -33,6 +33,13 @@ export default function ControlContent({ controlState, cookie }) {
           <label htmlFor="switch3" className={Styles.toggle} />
         </div>
 
+        {/* Còi cháy nổ */}
+        <div id={Styles.togglebox}>
+          <a id={Styles.toggleboxlable}>{Lang.value().buzzer} </a>
+          <input defaultChecked={controlState["buzzer"][0].value == "6"} type="checkbox" id="switch4" className={Styles.checkbox} onChange={async () => await buzzersw(cookie)} />
+          <label htmlFor="switch4" className={Styles.toggle} />
+        </div>
+
       </div>
     </div>
   )
@@ -96,6 +103,24 @@ async function curtsw(cookie) {
     const res = await axios.post(`${ServerUrl}update-device-status-for-dev`, {
       "device": "curtain",
       "deviceStatus": "8",
+    }, {
+      withCredentials: true,
+    });
+  }
+}
+
+async function buzzersw(cookie) {
+  if (document.getElementById('switch4').checked) {
+    const res = await axios.post(`${ServerUrl}update-device-status-for-dev`, {
+      "device": "buzzer",
+      "deviceStatus": "6",
+    }, {
+      withCredentials: true,
+    });
+  } else {
+    const res = await axios.post(`${ServerUrl}update-device-status-for-dev`, {
+      "device": "buzzer",
+      "deviceStatus": "5",
     }, {
       withCredentials: true,
     });

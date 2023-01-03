@@ -5,8 +5,8 @@ import { useState } from "react";
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/router'
 import { ServerUrl } from "./variable";
-export default function LoginForm() {
 
+export default function LoginForm() {
   const router = useRouter();
 
   const [usernameInput, setUsernameInput] = useState("");

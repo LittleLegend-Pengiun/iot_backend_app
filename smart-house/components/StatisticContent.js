@@ -28,15 +28,15 @@ export default function StatisticContent({ data, max, min, avg }) {
         <div className={styles.avgbox}>
           <p>
             <a className={styles.avgboxl}>{Lang.value().max}: &nbsp;</a>
-            <a className={styles.avgboxr}>{max}</a>
+            <a className={styles.avgboxr}>{max()}</a>
           </p>
           <p>
             <a className={styles.avgboxl}>{Lang.value().min}: &nbsp;</a>
-            <a className={styles.avgboxr}>{min}</a>
+            <a className={styles.avgboxr}>{min()}</a>
           </p>
           <p>
             <a className={styles.avgboxl}>{Lang.value().average}: &nbsp;</a>
-            <a className={styles.avgboxr}>{avg}</a>
+            <a className={styles.avgboxr}>{avg()}</a>
           </p>
         </div>
       </div>
