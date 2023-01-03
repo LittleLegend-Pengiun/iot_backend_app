@@ -6,9 +6,9 @@ import { ServerUrl } from "./variable";
 
 export default function ControlContent({ controlState }) {
 
-  console.log("controlState", controlState);
-  console.log("led", controlState["led"][0].value === "1");
-  console.log("pump", controlState["pump"][0].value === "3");
+  //console.log("controlState", controlState);
+  //console.log("led", controlState["led"][0].value === "1");
+  //console.log("pump", controlState["pump"][0].value === "3");
   return (
     <div className={styles.container}>
       <div className={styles.item}>

@@ -67,16 +67,6 @@ export class AppController {
   //  @UseFilters(UnauthorizedExceptionFilter)
   async updateData(@Req() req: Request, @Res() res: Response) {
     let feedID: string = this.settings.feedKeyDetail[`${req.body.device}`];
-    /*
-    if (req.body.device == "led") 
-      feedID = this.settings.feedKeyDetail.led;
-    else if (req.body.device == "pump") 
-      feedID = this.settings.feedKeyDetail.pump;
-    else if (req.body.device == "temp") 
-      feedID = this.settings.feedKeyDetail.temp;
-    else if (req.body.device == "humi") 
-      feedID = this.settings.feedKeyDetail.humi;
-    */
     this.mqttService.publish(
       `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {
         if (err) return res.status(201).send(err.toString());
@@ -92,19 +82,6 @@ export class AppController {
     //   Error: "API access denied!"
     // });
     let feedID: string = this.settings.feedKeyDetail[`${req.body.device}`];
-
-    // if (req.body.device == "led")
-    //   feedID = this.settings.feedKeyDetail.led;
-    // else if (req.body.device == "fan")
-    //   feedID = this.settings.feedKeyDetail.fan;
-    // else if (req.body.device == "temp")
-    //   feedID = this.settings.feedKeyDetail.temp;
-    // else if (req.body.device == "humi")
-    //   feedID = this.settings.feedKeyDetail.humi;
-    // else if (req.body.device == "buzzer")
-    //   feedID = this.settings.feedKeyDetail.buzzer;
-    // else if (req.body.device == "curtain")
-    //   feedID = this.settings.feedKeyDetail.curtain;
 
     this.mqttService.publish(
       `${this.settings.username}/feeds/${feedID}`, req.body.deviceStatus, (err) => {

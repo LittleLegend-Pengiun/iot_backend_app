@@ -3,6 +3,7 @@ import Layout from "../layout/layout"
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ServerUrl } from "../components/variable";
 
 
 export default function Admin({ data }) {
@@ -18,14 +19,14 @@ export default function Admin({ data }) {
     var pass = document.getElementById("passinput").value; //password from box
     var name = document.getElementById("nameinput").value; //fullname from box
     console.log(ID + ", " + pass + ", " + name);
-    const res = await axios.post('http://localhost:10080/server/users/create', { username: `${name}`, email: "", password: `${pass}`, age: 20 });
+    const res = await axios.post(`${ServerUrl}users/create`, { username: `${name}`, email: "", password: `${pass}`, age: 20 });
     console.log(res);
     await getAllData();
     addaccountpanelc();
   }
 
   const getAllData = async () => {
-    const res = await axios.get('http://localhost:10080/server/users');
+    const res = await axios.get(`${ServerUrl}users`);
     const newData = res.data;
     setUsers(newData)
   }
@@ -104,7 +105,7 @@ function addaccountpanelc() {
 }
 
 export async function getServerSideProps(context) {
-  const res = await axios.get('http://localhost:10080/server/users');
+  const res = await axios.get(`${ServerUrl}users`);
   const newData = res.data;
   // console.log(res.data.isError);
   if (newData.isError) {

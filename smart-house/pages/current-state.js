@@ -23,7 +23,7 @@ export default function CurrentState({ data }) {
 
   let dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] }, { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] }]
 
-  let dataDeviceState = [{ key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "BẬT" }, { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 3 ? "ĐÓNG" : "MỞ" }, { key: "curtain", name: "Rèm", val: state["curtain"][0]["value"] == 8 ? "ĐÓNG" : "MỞ" }]
+  let dataDeviceState = [{ key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "MỞ" }, { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 3 ? "ĐÓNG" : "MỞ" }, { key: "curtain", name: "Rèm", val: state["curtain"][0]["value"] == 8 ? "ĐÓNG" : "MỞ" }]
 
   return (<div className={Styles.page}>
     <div className={Styles.card}>
