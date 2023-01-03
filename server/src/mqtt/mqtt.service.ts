@@ -48,7 +48,7 @@ export class MqttService implements OnModuleInit {
             this.socketIO.server.emit(
                 "new_data", { feedID: topic, data: new_data.data[0] }
             );
-            console.log("new change in new data", topic, new_data.data[0])
+            // console.log("new change in new data", topic, new_data.data[0])
         });
 
         this.mqttClient.on("error", () => {

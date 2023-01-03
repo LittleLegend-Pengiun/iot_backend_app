@@ -77,7 +77,6 @@ export default function Statistic({ data }) {
 
   const [state, setState] = useState({
     temparrname: temparrname,
-    temparrvalue: temparrvalue,
     humarrname: humarrname,
     humarrvalue: humarrvalue,
     datatemp: datatemp,

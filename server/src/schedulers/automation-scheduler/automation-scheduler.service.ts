@@ -11,8 +11,8 @@ export class AutomationSchedulerService {
         this.settings = (new Config).settings;
     }
 
-    // Every minute at :59s
-    @Cron('59 * * * * *')
+    // Every minute at :00s
+    @Cron('0 * * * * *')
     async handleCron() {
         await this.automation();
     }
@@ -36,6 +36,7 @@ export class AutomationSchedulerService {
         feedID = this.settings.feedKeyDetail.fan;
         let temp = parseInt(dict["temp"][0]["value"]);
         let humi = parseInt(dict["humi"][0]["value"]);
+        let fanState = parseInt(dict["fan"][0]["value"]);
         if (temp > 32) {
             value = "2";
         } else if (temp < 27) {
@@ -49,8 +50,53 @@ export class AutomationSchedulerService {
                 value = null;
             }
         }
-        if (value) {
+        // console.log("fanState", fanState);
+        // console.log("parseInt(value)", parseInt(value));
+        if (value && parseInt(value) !== fanState) {
             this.mqttService.publish(`${this.settings.username}/feeds/${feedID}`, value);
         }
+
+        // Some curtain rules
+        feedID = this.settings.feedKeyDetail.curtain;
+        let curtainState = parseInt(dict["curtain"][0]["value"])
+        let timeAPIRes = await this.httpService.axiosRef.get("http://worldtimeapi.org/api/timezone/Asia/Ho_Chi_Minh");
+
+        let curHCMDateTime = new Date(timeAPIRes.data.datetime);
+        let curHCMDateHours = (curHCMDateTime.getHours() + 7) % 24; // ICT time
+        let curHCMDateMinutes = curHCMDateTime.getMinutes();
+
+        // console.log("curHCMDateHours", curHCMDateHours);
+        // console.log("this.settings.timeSettings.morningHour", this.settings.timeSettings.morningHour);
+        // console.log("this.settings.timeSettings.nightHour", this.settings.timeSettings.nightHour);
+        // console.log("curHCMDateMinutes", curHCMDateMinutes);
+        // console.log("this.settings.timeSettings.morningMinute", this.settings.timeSettings.morningMinute);
+        // console.log("this.settings.timeSettings.nightMinute", this.settings.timeSettings.nightMinute);
+
+        if (
+            (
+                curHCMDateHours > this.settings.timeSettings.morningHour
+                || curHCMDateHours == this.settings.timeSettings.morningHour && curHCMDateMinutes == this.settings.timeSettings.morningMinute
+            )
+            &&
+            (
+                curHCMDateHours < this.settings.timeSettings.morningHour
+                || curHCMDateHours == this.settings.timeSettings.morningHour && curHCMDateMinutes < this.settings.timeSettings.morningMinute
+            )
+        ) {
+            // In morning hours
+            if (curtainState == 8) {
+                value = '7';
+                // console.log("[Automation]: Curtain open");
+                this.mqttService.publish(`${this.settings.username}/feeds/${feedID}`, value);
+            }
+        } else {
+            // In night hours
+            if (curtainState == 7) {
+                value = '8';
+                // console.log("[Automation]: Curtain close");
+                this.mqttService.publish(`${this.settings.username}/feeds/${feedID}`, value);
+            }
+        }
+
     }
 }

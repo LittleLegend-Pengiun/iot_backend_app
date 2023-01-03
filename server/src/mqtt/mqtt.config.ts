@@ -35,6 +35,12 @@ export class Config {
             "bbc-led",
             "bbc-temp"
         ],
-        feedKeyDetail: this.clientTopics
+        feedKeyDetail: this.clientTopics,
+        timeSettings: {
+            morningHour: 5,
+            morningMinute: 30,
+            nightHour: 10,
+            nightMinute: 30
+        }
     }
 }
