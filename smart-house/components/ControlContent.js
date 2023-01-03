@@ -15,21 +15,21 @@ export default function ControlContent({ controlState, cookie }) {
         {/* Đèn */}
         <div id={Styles.togglebox}>
           <a id={Styles.toggleboxlable}>{Lang.value().lamp}</a>
-          <input defaultChecked={controlState["led"][0].value === "1"} type="checkbox" id="switch1" className={Styles.checkbox} onChange={async () => await lightsw(cookie)} />
+          <input defaultChecked={controlState["led"][0].value == "1"} type="checkbox" id="switch1" className={Styles.checkbox} onChange={async () => await lightsw(cookie)} />
           <label htmlFor="switch1" className={Styles.toggle} />
         </div>
 
         {/* Quạt */}
         <div id={Styles.togglebox}>
           <a id={Styles.toggleboxlable}>{Lang.value().fan}</a>
-          <input defaultChecked={controlState["fan"][0].value === "2"} type="checkbox" id="switch2" className={Styles.checkbox} onChange={async () => await fansw(cookie)} />
+          <input defaultChecked={controlState["fan"][0].value == "2"} type="checkbox" id="switch2" className={Styles.checkbox} onChange={async () => await fansw(cookie)} />
           <label htmlFor="switch2" className={Styles.toggle} />
         </div>
 
         {/* Rèm */}
         <div id={Styles.togglebox}>
           <a id={Styles.toggleboxlable}>{Lang.value().curtain} </a>
-          <input defaultChecked={controlState["curtain"][0].value === "7"} type="checkbox" id="switch3" className={Styles.checkbox} onChange={async () => await curtsw(cookie)} />
+          <input defaultChecked={controlState["curtain"][0].value == "7"} type="checkbox" id="switch3" className={Styles.checkbox} onChange={async () => await curtsw(cookie)} />
           <label htmlFor="switch3" className={Styles.toggle} />
         </div>
 
