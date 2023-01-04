@@ -1,36 +1,36 @@
 import Card from "../components/Card"
 import Layout from "../layout/layout"
+import styles from "../styles/Control.module.css"
 import ControlContent from "../components/ControlContent"
-import { useSelector } from "react-redux";
+import { useSocketContext } from "../context/appWrapper"
+import { useState, useEffect } from "react"
+import axios from "axios"
+import initResponsiveDataListener from "../components/ResponsiveData";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { ServerUrl } from "../components/variable";
-import { useSocketContext } from "../context/appWrapper";
 import { getCookie } from "cookies-next";
-import initResponsiveDataListener from "../components/ResponsiveData"
+
+// const dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: "35 °C" }, { key: "humid", name: "Độ ẩm", val: "76 %" }]
 
 export default function Control({ data }) {
+  // console.log("Control data",data);
   const router = useRouter();
   if (!data) {
     router.replace("/login");
   }
 
   const [state, setState] = useState(data);
+
   const socket = useSocketContext();
   useEffect(() => {
     initResponsiveDataListener(state, setState, socket);
   }, [])
 
-  const Lang = useSelector(state => state.language);
-  const Styles = (useSelector(state => state.theme)).value().control;
-
   const jwtToken = getCookie("jwt-token");
   const cookie = `jwt-token=${jwtToken}`;
 
-  return (<div className={Styles.page}>
-    <div className={Styles.card}>
-      <Card title={Lang.value().control_panel}>
+  return (<div className={styles.page}>
+    <div className={styles.card}>
+      <Card title="Bảng điều khiển">
         <ControlContent controlState={state} cookie={cookie}></ControlContent>
       </Card>
     </div>

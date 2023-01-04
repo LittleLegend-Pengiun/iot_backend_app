@@ -1,5 +1,5 @@
 import Card from "./Card"
-import styles from "../styles/Login.module.css"
+import styles from "../styles/light/Login.module.css"
 import axios from "axios";
 import { useState } from "react";
 import { setCookie } from 'cookies-next';
@@ -15,16 +15,18 @@ export default function LoginForm() {
   const Redirect = async () => {
     //will do some authentication work here before navigate user to the main page
     try {
-      console.log(`${ServerUrl}users/authenticate`);
+      //console.log(`${ServerUrl}users/authenticate`);
       const res = await axios.post(`${ServerUrl}users/authenticate`, {
         "username": usernameInput,
         "password": passwordInput
       }, {
+        withCredentials: true
       })
-      const {data} = res;
+      const { data } = res;
+      console.log("login res:", res);
       setCookie("jwt-token", data["jwt-token"]);
       router.push("/control");
-    } catch(e) {
+    } catch (e) {
       // const {response} = e;
       // if(response.status) {
       //   alert("Login failed, invalid credential");
@@ -41,17 +43,17 @@ export default function LoginForm() {
           <div style={{ marginBottom: "40px" }}>
             <div className={styles.inputInfo}>
               <label>Username</label>
-              <input type="text" value={usernameInput} onChange={(event) => setUsernameInput(event.target.value)} className={styles.inputBox}></input>
+              <input type="text" className={styles.inputBox} onChange={(event) => setUsernameInput(event.target.value)} ></input>
               <label>Password</label>
-              <input type="text" value={passwordInput} onChange={(event) => setPasswordInput(event.target.value)}  className={styles.inputBox}></input>
+              <input type="text" className={styles.inputBox} onChange={(event) => setPasswordInput(event.target.value)} ></input>
             </div>
 
             <div>
               <input type="checkbox"></input>
               <label>Remember me</label>
             </div>
-            <button type="submit" className={styles.submitBtn} onClick={Redirect}>Login</button>
           </div>
+          <button type="submit" className={styles.submitBtn} onClick={Redirect}>Login</button>
           <div style={{ marginTop: "auto" }}>Can't signin? Contact admin, please!</div>
         </div>
       </div>

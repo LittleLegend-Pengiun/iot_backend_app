@@ -1,12 +1,13 @@
 import Card from "../components/Card"
 import Layout from "../layout/layout"
-import styles from "../styles/Current-state.module.css"
 import CurrentStateContent from "../components/CurrentStateContent"
-import axios from 'axios';
-import initResponsiveDataListener from "../components/ResponsiveData";
-import { useEffect, useState } from "react";
-import { useSocketContext } from "../context/appWrapper";
+import { useSelector } from "react-redux";
+import axios from "axios";
 import { ServerUrl } from "../components/variable";
+import { useState, useEffect } from "react";
+import { useSocketContext } from "../context/appWrapper";
+import initResponsiveDataListener from "../components/ResponsiveData";
+
 
 export default function CurrentState({ data }) {
   const [state, setState] = useState(data);
@@ -17,19 +18,30 @@ export default function CurrentState({ data }) {
   }
     , [])
 
+  const Lang = useSelector(state => state.language);
+  const Styles = (useSelector(state => state.theme)).value().currentState;
 
-  let dataHouseState = [{ key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] }, { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] }]
+  let dataHouseState = [
+    { key: "temp", name: "Nhiệt độ", val: state["temp"][0]["value"] },
+    { key: "humid", name: "Độ ẩm", val: state["humi"][0]["value"] },
+    { key: "gas", name: "Nồng độ gas", val: state["gas"][0]["value"] }
+  ];
 
-  let dataDeviceState = [{ key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "BẬT" }, { key: "fan", name: "Bơm", val: state["pump"][0]["value"] == 3 ? "MỞ" : "ĐÓNG" }, { key: "curtain", name: "Rèm", val: "ĐÓNG" }]
+  let dataDeviceState = [
+    { key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "MỞ" },
+    { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 3 ? "ĐÓNG" : "MỞ" },
+    { key: "curtain", name: "Rèm", val: state["curtain"][0]["value"] == 8 ? "ĐÓNG" : "MỞ" },
+    { key: "buzzer", name: "Cảnh báo cháy nổ", val: state["buzzer"][0]["value"] == 6 ? "ĐÓNG" : "MỞ" }
+  ]
 
-  return (<div className={styles.page}>
-    <div className={styles.card}>
-      <Card title="Trạng thái nhà">
+  return (<div className={Styles.page}>
+    <div className={Styles.card}>
+      <Card title={Lang.value().house_state}>
         <CurrentStateContent list_state={dataHouseState}></CurrentStateContent>
       </Card>
     </div>
-    <div className={styles.card}>
-      <Card title="Trạng thái thiết bị">
+    <div className={Styles.card}>
+      <Card title={Lang.value().device_state}>
         <CurrentStateContent list_state={dataDeviceState}></CurrentStateContent>
       </Card>
     </div>
@@ -39,14 +51,14 @@ export default function CurrentState({ data }) {
 
 CurrentState.getLayout = function getLayout(page) {
   return (
-    <Layout>``
+    <Layout>
       {page}
     </Layout>
   )
 }
 
 export async function getServerSideProps(context) {
-  // console.log(parsedCookies);
+  console.log(context.req.headers.cookie);
   const res = await axios.get(`${ServerUrl}get-all-data`, {
     headers: {
       Cookie: context.req.headers.cookie

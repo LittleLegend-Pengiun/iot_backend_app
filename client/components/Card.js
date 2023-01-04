@@ -1,16 +1,18 @@
-import React, { Children } from 'react'
-import styles from '../styles/Card.module.css'
+import React from 'react'
+import { useSelector } from "react-redux";
 
-export default function Card({ title, list_state, children }) {
+export default function Card({ title, children }) {
+
+  const Styles = (useSelector(state => state.theme)).value().card;
 
   if (title === undefined) {
     return;
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>{title}</div>
-      <div className={styles.content}>
+    <div className={Styles.container}>
+      <div className={Styles.title}>{title}</div>
+      <div className={Styles.content}>
         {children}
       </div>
     </div>
