@@ -9,6 +9,7 @@ import { HttpModule } from '@nestjs/axios';
 import { VerifyGuard } from './guards/verify.guard';
 import { AutomationSchedulerService } from './schedulers/automation-scheduler/automation-scheduler.service';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ManualSchedulerService } from './schedulers/manual-scheduler/manual-scheduler.service';
 
 @Module({
   imports: [
@@ -20,6 +21,6 @@ import { ScheduleModule } from '@nestjs/schedule';
     })
   ],
   controllers: [AppController, AdminsController],
-  providers: [SocketIoGateway, MqttService, VerifyGuard, AutomationSchedulerService],
+  providers: [SocketIoGateway, MqttService, VerifyGuard, AutomationSchedulerService, ManualSchedulerService],
 })
-export class AppModule { }
+export class AppModule {}

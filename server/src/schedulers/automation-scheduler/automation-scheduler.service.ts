@@ -11,8 +11,8 @@ export class AutomationSchedulerService {
         this.settings = (new Config).settings;
     }
 
-    // Every minute at :00s
-    @Cron('0 * * * * *')
+    // Every hours at :00s
+    @Cron('0 0 * * * *')
     async handleCron() {
         await this.automation();
     }
@@ -21,6 +21,7 @@ export class AutomationSchedulerService {
         let dict = {};
         let feedID = '';
         let value = "";
+        
         for (let key of this.settings.feedKey) {
             try {
                 let status = await this.httpService.axiosRef.get(
@@ -31,7 +32,7 @@ export class AutomationSchedulerService {
                 console.log(`Error: ${err}; key: ${key}`);
             }
         }
-
+        /*
         // Some fan rules
         feedID = this.settings.feedKeyDetail.fan;
         let temp = parseInt(dict["temp"][0]["value"]);
@@ -55,7 +56,7 @@ export class AutomationSchedulerService {
         if (value && parseInt(value) !== fanState) {
             this.mqttService.publish(`${this.settings.username}/feeds/${feedID}`, value);
         }
-
+        */
         // Some curtain rules
         feedID = this.settings.feedKeyDetail.curtain;
         let curtainState = parseInt(dict["curtain"][0]["value"])

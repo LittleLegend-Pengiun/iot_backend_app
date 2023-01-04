@@ -4,12 +4,13 @@ import { error, info } from 'console';
 import { connect, MqttClient } from 'mqtt';
 import { SocketIoGateway } from 'src/gateway/socket-io.gateway';
 import { Config } from './mqtt.config';
+import { ManualSchedulerService } from 'src/schedulers/manual-scheduler/manual-scheduler.service';
 
 @Injectable()
 export class MqttService implements OnModuleInit {
     mqttClient: MqttClient;
     settings: any;
-    constructor(private socketIO: SocketIoGateway, private httpServices: HttpService) {
+    constructor(private socketIO: SocketIoGateway, private automation: ManualSchedulerService) {
         this.settings = (new Config).settings;
     }
 
@@ -39,6 +40,10 @@ export class MqttService implements OnModuleInit {
 
         this.mqttClient.on("message", async (topic: any, message: any, _) => {
             console.log(`Data received from ${topic}: ${message}`);
+
+            //  trigger some automation
+            this.automation.triggerAutomationWhenDeviceStatusChange(this.mqttClient, topic, message);
+
             // emit to server
             let new_data = await httpServices.axiosRef.get(
                 `https://io.adafruit.com/api/v2/${topic}/data`

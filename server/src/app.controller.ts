@@ -37,17 +37,13 @@ export class AppController {
     return dict;
   }
 
-  @Get('/get-all-chart-data/:hours')
+  @Get('/get-all-chart-data/0')
   //  @UseGuards(VerifyGuard)     
   //  @UseFilters(UnauthorizedExceptionFilter)
   @HttpCode(200)
   async getAllChartData(@Param('hours') hours: number): Promise<any> {
     const dict: Object = {};
-    let hoursToGet: string
-    if (hours == 0)
-      hoursToGet = "";
-    else
-      hoursToGet = "?hours=" + hours.toString();
+    let hoursToGet: string = "";
     for (let key of this.settings.feedKey) {
       try {
         let status = await this.httpServices.axiosRef.get(
