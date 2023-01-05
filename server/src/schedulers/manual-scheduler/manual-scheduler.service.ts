@@ -14,26 +14,41 @@ export class ManualSchedulerService {
     {
         const deviceName = String(topic);
         let newValue: number, tempValue: number, humiValue: number,
-            updateDeviceName: string;
+            updateDeviceName: string,
+            deviceValue: number,
+            res: any;
 
         //fan fules
-        if (deviceName == `${this.settings.username}/feeds/bbc-temp`)
-        {
-            tempValue = parseInt(message);
+        switch (deviceName) {
+            case `${this.settings.username}/feeds/bbc-temp`:
+                tempValue = parseInt(message);
 
-            const res = await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/bbc-humi/data`);
-            humiValue = parseInt(res.data[0].value);
-            
-            updateDeviceName = "bbc-fan";
-        }
+                res = await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/bbc-humi/data`);
+                humiValue = parseInt(res.data[0].value);
+                
+                updateDeviceName = "bbc-fan";
+                break;
+            case `${this.settings.username}/feeds/bbc-humi`:
+                res = await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/bbc-temp/data`);
+                tempValue = parseInt(res.data[0].value);
 
-        if (deviceName == `${this.settings.username}/feeds/bbc-humi`)
-        {
-            const res = await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/bbc-temp/data`);
-            tempValue = parseInt(res.data[0].value);
+                humiValue = parseInt(message);
+                updateDeviceName = "bbc-fan";
+                break;
 
-            humiValue = parseInt(message);
-            updateDeviceName = "bbc-fan";
+            case `${this.settings.username}/feeds/bbc-gas`:
+                const gasValue = parseInt(message);
+                if (gasValue > 700) {
+                    newValue = 5;
+                    updateDeviceName = "bbc-buzzer";
+                } else if (gasValue < 400) {
+                    newValue = 6;
+                    updateDeviceName = "bbc-buzzer";
+                } else return;
+                break;
+
+            default:
+                return;
         }
 
         // Check conditions
@@ -49,9 +64,10 @@ export class ManualSchedulerService {
             } else {
                 newValue = null;
             }
-        }
-        
-        const deviceValue: number = parseInt((await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${updateDeviceName}/data`)).data[0].value);
+        }        
+        res = await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${updateDeviceName}/data`);
+
+        deviceValue = parseInt(res.data[0].value);        
 
         if (newValue && newValue !== deviceValue) {
             mqttService.publish(`${this.settings.username}/feeds/${updateDeviceName}`, String(newValue));
