@@ -37,13 +37,16 @@ export class AppController {
     return dict;
   }
 
-  @Get('/get-all-chart-data/0')
+  @Get('/get-all-chart-data/:hours')
   //  @UseGuards(VerifyGuard)     
   //  @UseFilters(UnauthorizedExceptionFilter)
   @HttpCode(200)
   async getAllChartData(@Param('hours') hours: number): Promise<any> {
     const dict: Object = {};
-    let hoursToGet: string = "";
+    let hoursToGet: string;
+    if (hours == 0)
+      hoursToGet = "";
+    else hoursToGet = "?hours=" +String(hours);
     for (let key of this.settings.feedKey) {
       try {
         let status = await this.httpServices.axiosRef.get(
@@ -52,6 +55,7 @@ export class AppController {
         dict[`${key.substr(4)}`] = status.data.data;
       } catch (err) {
         console.log(`Error: ${err}; key: ${key}`);
+        console.log(`API: https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${key}/data/chart${hoursToGet}`)
       }
     }
 
