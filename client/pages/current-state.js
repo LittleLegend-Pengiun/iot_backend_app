@@ -59,7 +59,7 @@ CurrentState.getLayout = function getLayout(page) {
 
 export async function getServerSideProps(context) {
   console.log(context.req.headers.cookie);
-  const res = await axios.get(`${ServerUrl}get-all-data`, {
+  const res = await axios.get(`${ServerUrl}get-all-chart-data/0`, {
     headers: {
       Cookie: context.req.headers.cookie
     }
