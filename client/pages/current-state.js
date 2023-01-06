@@ -29,7 +29,7 @@ export default function CurrentState({ data }) {
 
   let dataDeviceState = [
     { key: "lamp", name: "Đèn", val: state["led"][0]["value"] == 0 ? "TẮT" : "MỞ" },
-    { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 3 ? "ĐÓNG" : "MỞ" },
+    { key: "fan", name: "Quạt", val: state["fan"][0]["value"] == 2 ? "TẮT" : "MỞ" },
     { key: "curtain", name: "Rèm", val: state["curtain"][0]["value"] == 8 ? "ĐÓNG" : "MỞ" },
     { key: "buzzer", name: "Cảnh báo cháy nổ", val: state["buzzer"][0]["value"] == 6 ? "ĐÓNG" : "MỞ" }
   ]

@@ -54,7 +54,7 @@ export default function LoginForm() {
             </div>
           </div>
           <button type="submit" className={styles.submitBtn} onClick={Redirect}>Login</button>
-          <div style={{ marginTop: "auto" }}>Can't signin? Contact admin, please!</div>
+          <div style={{ marginTop: "auto" }}>Cannot signin? Contact admin, please!</div>
         </div>
       </div>
     </Card>

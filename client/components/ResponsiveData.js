@@ -22,7 +22,7 @@ const initResponsiveDataListener = (state, setState, socket) => {
             || msg.feedID == feedKey.gas
         ) {
             let newstate = null;
-            console.log('new_data called', msg);
+            console.log('new_data called', msg.feedID, "data: ", msg.data);
             let item = msg.data;
 
             if (!curstate) {

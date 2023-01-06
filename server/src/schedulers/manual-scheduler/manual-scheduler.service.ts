@@ -13,9 +13,9 @@ export class ManualSchedulerService {
     async triggerAutomationWhenDeviceStatusChange(mqttService: MqttClient,topic: any, message: any) 
     {
         const deviceName = String(topic);
-        let newValue: number, tempValue: number, humiValue: number,
-            updateDeviceName: string,
-            deviceValue: number,
+        let newValue: number= undefined, tempValue: number = undefined, humiValue: number = undefined,
+            updateDeviceName: string = undefined,
+            deviceValue: number = undefined,
             res: any;
 
        
@@ -55,24 +55,20 @@ export class ManualSchedulerService {
 
         // Check fan conditions
         if (updateDeviceName == "bbc-fan") {
-            if (tempValue > 32) {
-                newValue = 2;
-            } else if (tempValue < 27) {
-                newValue = 3;
-            } else if (humiValue > 30) {
-                newValue = 3;
-            } else if (humiValue < 25) {
+            if ((tempValue < 30) && (humiValue >= 90)) {
                 newValue = 2;
             } else {
-                newValue = null;
+                newValue = 3;
             }
+            
         }        
         res = await this.httpService.axiosRef.get(`https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${updateDeviceName}/data`);
 
         deviceValue = parseInt(res.data[0].value);        
 
-        if (newValue && newValue !== deviceValue) {
+        if (newValue) {
             mqttService.publish(`${this.settings.username}/feeds/${updateDeviceName}`, String(newValue));
         }
+        console.log(`Temp: ${tempValue}; humi: ${humiValue}; value: ${newValue}; deviceValue: ${deviceValue}`);
     }
 }
