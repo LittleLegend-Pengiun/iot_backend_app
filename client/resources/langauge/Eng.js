@@ -9,11 +9,9 @@ export default function () {
     control_panel: 'Control panel',
     temperature: 'Temperature',
     humidity: 'Humidity',
-    gas: 'Gas',
     lamp: 'Lamp',
     fan: 'Fan',
     curtain: 'Curtain',
-    buzzer: 'Gas Explosion Buzzer',
     max: 'Max',
     min: 'Min',
     average: 'Average',
@@ -32,6 +30,15 @@ export default function () {
     abutton: 'Add Account',
     passwd: 'Password',
     cre: 'Add',
-    back: 'Back'
+    back: 'Back',
+    speaker: 'Buzzer',
+    gas: 'Gas concentration',
+    h1: '1 Hour',
+    h2: '2 Hours',
+    h6: '6 Hours',
+    h12: '12 Hours',
+    d1: '1 Day',
+    w1: '1 Week',
+    m1: '1 Month'
   }
 }

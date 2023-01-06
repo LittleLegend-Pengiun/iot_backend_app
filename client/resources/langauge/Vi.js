@@ -9,11 +9,9 @@ export default function () {
     control_panel: 'Bảng điều khiển',
     temperature: 'Nhiệt độ',
     humidity: 'Độ ẩm',
-    gas: 'Gas',
     lamp: 'Đèn',
     fan: 'Quạt',
     curtain: 'Rèm',
-    buzzer: 'Cảnh báo cháy nổ',
     max: 'Cao nhất',
     min: 'Thấp nhất',
     average: 'Trung bình',
@@ -32,7 +30,15 @@ export default function () {
     abutton: 'Thêm Tài Khoản',
     passwd: 'Mật Khẩu',
     cre: 'Thêm',
-    back: 'Trở Lại'
-
+    back: 'Trở Lại',
+    speaker: 'Loa',
+    gas: 'Nồng độ gas',
+    h1: '1 Giờ',
+    h2: '2 Giờ',
+    h6: '6 Giờ',
+    h12: '12 Giờ',
+    d1: '1 Ngày',
+    w1: '1 Tuần',
+    m1: '1 Tháng'
   }
 }

@@ -100,3 +100,37 @@
   font-size: 1.5vw;
   line-height: 1vw !important; 
 }
+
+
+.option {
+  background-color: #919191;
+  color:rgb(255, 255, 255);
+  border: none;
+  font-weight: 500;
+  font-size: 0.8vw;
+  height: 1.5vw;
+  width: 5vw;
+  border-radius: 0.5vw;
+  margin-left: 2vw;
+  margin-bottom: -2vw;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  text-align: center;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.option:hover {
+  background-color: #535353;
+  color:rgb(255, 255, 255);
+  border: none;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.op2 {
+  border: none;
+  line-height: 1000px;
+}

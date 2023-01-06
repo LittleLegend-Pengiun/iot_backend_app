@@ -9,11 +9,9 @@ export default function () {
     control_panel: 'Schalttafel',
     temperature: 'Temperatur',
     humidity: 'Feuchtigkeit',
-    gas: 'Gas',
     lamp: 'Lampe',
     fan: 'Ventilator',
     curtain: 'Vorhang',
-    buzzer: 'Gasexplosionssummer',
     max: 'Max',
     min: 'Min',
     average: 'Durchschnitt',
@@ -32,6 +30,15 @@ export default function () {
     abutton: 'Konto hinzufügen',
     passwd: 'Passwort',
     cre: 'Addieren',
-    back: 'Zurück'
+    back: 'Zurück',
+    speaker: 'Sirene',
+    gas: 'Gaskonzentration',
+    h1: '1 Stunde',
+    h2: '2 Stunden',
+    h6: '6 Stunden',
+    h12: '12 Stunden',
+    d1: '1 Tag',
+    w1: '1 Woche',
+    m1: '1 Monat'
   }
 }
