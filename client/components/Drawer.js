@@ -19,7 +19,7 @@ export default function Drawer() {
         <div className={Styles.drawerSection}>
           <p id={Styles.vwbox}></p>
           <p id={Styles.imgStyle}><Image src={avatarImg} id={Styles.imgStyle}></Image></p>
-          <p id={Styles.namebox}>THÙY DUNG</p>
+          <p id={Styles.namebox}>BK SMART HOUSE</p>
         </div>
         <p id={Styles.vwbox}></p>
         <div className={Styles.drawerSection}>

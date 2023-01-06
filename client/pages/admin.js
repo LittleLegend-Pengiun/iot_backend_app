@@ -15,11 +15,11 @@ export default function Admin({ data }) {
   console.log(users);
 
   async function addaccount() {
-    var ID = document.getElementById("idinput").value; //username from box
+    var Email = document.getElementById("idinput").value; //username from box
     var pass = document.getElementById("passinput").value; //password from box
     var name = document.getElementById("nameinput").value; //fullname from box
-    console.log(ID + ", " + pass + ", " + name);
-    const res = await axios.post(`${ServerUrl}users/create`, { username: `${name}`, email: "", password: `${pass}`, age: 20 });
+    //console.log(email + ", " + pass + ", " + name);
+    const res = await axios.post(`${ServerUrl}users/create`, { username: `${name}`, email: `${Email}`, password: `${pass}`, age: 20 });
     console.log(res);
     await getAllData();
     addaccountpanelc();
@@ -42,12 +42,11 @@ export default function Admin({ data }) {
               {/* Add new user button (will call overlay panel) */}
               <div className={Styles.title2}>{Lang.value().abutton}</div>
               <div className={Styles.content2}>
-                {/* Input ID (username) for new user */}
-                <input type="text" placeholder={"ID"} id="idinput" className={Styles.abutton} />
+                <input type="text" placeholder={Lang.value().fname} id="nameinput" className={Styles.abutton} />
                 {/* Input password for new user */}
                 <input type="text" placeholder={Lang.value().passwd} id="passinput" className={Styles.abutton} />
-                {/* Input fullname for new user */}
-                <input type="text" placeholder={Lang.value().fname} id="nameinput" className={Styles.abutton} />
+
+                <input type="text" placeholder={"Email"} id="idinput" className={Styles.abutton} />
                 <br></br><br></br>
               </div>
               <br></br><br></br>

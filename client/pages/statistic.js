@@ -188,7 +188,7 @@ export default function Statistic({ data }) {
     //update the diagram after receiving the respond
     let res = await axios.get(`http://localhost:3030/get-chart-by-feed/bbc-gas/${hours}`)
     console.log(res.data)
-    setState({ ...state, gasarrname: res.data.time, gasarrvalue: res.data.val, datahumid: drawPoint(res.data.time, res.data.val) })
+    setState({ ...state, gasarrname: res.data.time, gasarrvalue: res.data.val, datagas: drawPoint(res.data.time, res.data.val) })
   }
 
   return (<div className={Styles.page}>

@@ -31,7 +31,7 @@ export default function () {
     passwd: 'Contraseña',
     cre: 'Agregar',
     back: 'Atrás',
-    speaker: 'Sirena',
+    buzzer: 'Sirena',
     gas: 'Concentración de gases',
     h1: '1 Hora',
     h2: '2 Horas',
