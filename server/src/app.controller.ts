@@ -58,9 +58,31 @@ export class AppController {
         console.log(`API: https://io.adafruit.com//api/v2/${this.settings.username}/feeds/${key}/data/chart${hoursToGet}`)
       }
     }
-
     return dict;
   }
+
+
+  @Get('/get-chart-by-feed/:feed/:hours')
+  //  @UseGuards(VerifyGuard)     
+  //  @UseFilters(UnauthorizedExceptionFilter)
+  @HttpCode(200)
+  async getChartDataByFeed(@Param('feed') feed: string, @Param('hours') hours: number): Promise<any> {
+    const dict = {time:[], val:[]};
+      try {
+        let status = await this.httpServices.axiosRef.get(
+          `https://io.adafruit.com/api/v2/${this.settings.username}/feeds/${feed}/data/chart?hours=${hours}`
+        );
+        for(let point of status.data.data){      
+          dict.time.push(point[0])
+          dict.val.push(point[1])
+        }
+        return dict
+        
+      } catch (err) {
+        console.log(`Error: ${err}`); 
+      }
+    }
+ 
 
   @Post('/update-device-status')
   //  @UseGuards(VerifyGuard)

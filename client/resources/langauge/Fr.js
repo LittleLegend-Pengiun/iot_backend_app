@@ -9,11 +9,9 @@ export default function () {
     control_panel: 'Panneau de commande',
     temperature: 'Température',
     humidity: 'Humidité',
-    gas: 'Gas',
     lamp: 'Lampe',
     fan: 'Ventilateur',
     curtain: 'Rideau',
-    buzzer: 'Avertisseur d\'explosion de gaz',
     max: 'Max',
     min: 'Min',
     average: 'Moyenne',
@@ -28,10 +26,19 @@ export default function () {
     ger: 'Allemand',
     span: 'Espagnol',
     admin: 'Administrateur',
-    fname: 'Nom et prénom',
+    fname: "Nom d'utilisateur",
     abutton: 'Ajouter un compte',
     passwd: 'Mot de passe',
     cre: 'Ajouter',
-    back: 'Arrière'
+    back: 'Arrière',
+    buzzer: 'Sirène',
+    gas: 'Concentration de gaz',
+    h1: '1 Heure',
+    h2: '2 Heures',
+    h6: '6 Heures',
+    h12: '12 Heures',
+    d1: '1 Jour',
+    w1: '1 Semaine',
+    m1: '1 Mois'
   }
 }

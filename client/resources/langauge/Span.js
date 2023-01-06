@@ -9,11 +9,9 @@ export default function () {
     control_panel: 'Panel de control',
     temperature: 'Temperatura',
     humidity: 'Humedad',
-    gas: 'Gas',
     lamp: 'Lámpara',
     fan: 'Ventilador',
     curtain: 'Cortina',
-    buzzer: 'Zumbador de explosión de gas',
     max: 'Máx',
     min: 'Mínimo',
     average: 'Promedio',
@@ -23,7 +21,7 @@ export default function () {
     language: 'Idioma',
     darkm: 'Modo Oscuro',
     en: "Inglés",
-    vi: 'vietnamita',
+    vi: 'Vietnamita',
     fr: 'Francés',
     ger: 'Alemán',
     span: 'Español',
@@ -32,6 +30,15 @@ export default function () {
     abutton: 'Añadir cuenta',
     passwd: 'Contraseña',
     cre: 'Agregar',
-    back: 'Atrás'
+    back: 'Atrás',
+    buzzer: 'Sirena',
+    gas: 'Concentración de gases',
+    h1: '1 Hora',
+    h2: '2 Horas',
+    h6: '6 Horas',
+    h12: '12 Horas',
+    d1: '1 Día',
+    w1: '1 Semana',
+    m1: '1 Mes'
   }
 }
