@@ -22,7 +22,7 @@ export default function ControlContent({ controlState, cookie }) {
         {/* Quạt */}
         <div id={Styles.togglebox}>
           <a id={Styles.toggleboxlable}>{Lang.value().fan}</a>
-          <input defaultChecked={controlState["fan"][0].value == "2"} type="checkbox" id="switch2" className={Styles.checkbox} onChange={async () => await fansw(cookie)} />
+          <input defaultChecked={controlState["fan"][0].value == "3"} type="checkbox" id="switch2" className={Styles.checkbox} onChange={async () => await fansw(cookie)} />
           <label htmlFor="switch2" className={Styles.toggle} />
         </div>
 
@@ -75,7 +75,7 @@ async function fansw(cookie) {
   if (document.getElementById('switch2').checked) {
     const res = await axios.post(`${ServerUrl}update-device-status-for-dev`, {
       "device": "fan",
-      "deviceStatus": "2",
+      "deviceStatus": "3",
     }, {
       withCredentials: true,
     });
@@ -83,7 +83,7 @@ async function fansw(cookie) {
   } else {
     const res = await axios.post(`${ServerUrl}update-device-status-for-dev`, {
       "device": "fan",
-      "deviceStatus": "3",
+      "deviceStatus": "2",
     }, {
       withCredentials: true,
     });
