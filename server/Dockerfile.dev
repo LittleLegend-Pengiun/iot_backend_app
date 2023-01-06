@@ -1,6 +1,6 @@
 # Stage 1: Install dependency
 
-FROM node:16-alpine as builder
+FROM node:alpine as builder
 
 WORKDIR /app
 
@@ -21,5 +21,5 @@ WORKDIR /home/node/app
 COPY --chown=node:node . .
 COPY --from=builder /app/node_modules /home/node/app/app_modules
 
-RUN npm i
+RUN npm i @nestjs/cli
 CMD ["yarn", "run", "start:dev"]

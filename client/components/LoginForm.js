@@ -5,6 +5,7 @@ import { useState } from "react";
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/router'
 import { ServerUrl } from "./variable";
+import { getCookie } from "cookies-next";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function LoginForm() {
       const { data } = res;
       console.log("login res:", res);
       setCookie("jwt-token", data["jwt-token"]);
+      setCookie("username", data["username"]);
       router.push("/control");
     } catch (e) {
       // const {response} = e;

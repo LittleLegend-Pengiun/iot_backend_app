@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ServerUrl } from "../components/variable";
+import { getCookie } from "cookies-next";
 
 
 export default function Admin({ data }) {
@@ -11,7 +12,11 @@ export default function Admin({ data }) {
   const Lang = useSelector(state => state.language);
   const Styles = (useSelector(state => state.theme)).value().admin;
 
+  const currentUser = getCookie("username");
+
   const [users, setUsers] = useState(data);
+
+
   console.log(users);
 
   async function addaccount() {
@@ -31,7 +36,7 @@ export default function Admin({ data }) {
     setUsers(newData)
   }
 
-  return (<div className={Styles.page}>
+  return <div className={Styles.page}>
     <div className={Styles.card}>
       <Card title={<input type="button" value={Lang.value().abutton} id="intbl" onClick={addaccountpanel} className={Styles.abutton4} />}>
 
@@ -88,7 +93,7 @@ export default function Admin({ data }) {
 
       </Card>
     </div>
-  </div >)
+  </div >;
 }
 
 
