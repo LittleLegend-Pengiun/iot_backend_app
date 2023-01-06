@@ -61,7 +61,7 @@ export default function Error() {
                 <div className={Styles.container}>
                     <div className={Styles.item}>
 
-                        <h1 style={{ color: "red" }}>You are not admin</h1>
+                        <h1 style={{ color: "red" }}>You are not Page Administrator!!!</h1>
                         <a href="/setting">
                             Back to user page!
                         </a>

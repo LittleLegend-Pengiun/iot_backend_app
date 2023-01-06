@@ -3,7 +3,7 @@ import Image from "next/image";
 import avatarImg from "./nhh.jpg";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faToggleOn, faChartPie, faCog, faShield } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faToggleOn, faChartPie, faCog, faShield, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from "react-redux";
 import { getCookie } from "cookies-next";
 
@@ -58,6 +58,13 @@ export default function Drawer() {
               &nbsp;&nbsp;<FontAwesomeIcon icon={faShield} />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {Lang.value().admin}
+            </li>
+          </Link>
+          <Link href="/logout">
+            <li id={currentRoute == "/logout" ? "active" : ""}>
+              &nbsp;&nbsp;<FontAwesomeIcon icon={faSignOut} />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Sign Out
             </li>
           </Link>
         </div>
