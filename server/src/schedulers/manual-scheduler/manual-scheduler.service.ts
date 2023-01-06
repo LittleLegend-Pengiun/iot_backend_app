@@ -18,8 +18,9 @@ export class ManualSchedulerService {
             deviceValue: number,
             res: any;
 
-        //fan fules
+       
         switch (deviceName) {
+             //fan fules
             case `${this.settings.username}/feeds/bbc-temp`:
                 tempValue = parseInt(message);
 
@@ -35,7 +36,8 @@ export class ManualSchedulerService {
                 humiValue = parseInt(message);
                 updateDeviceName = "bbc-fan";
                 break;
-
+            
+            // buzzer rules
             case `${this.settings.username}/feeds/bbc-gas`:
                 const gasValue = parseInt(message);
                 if (gasValue > 700) {
@@ -51,7 +53,7 @@ export class ManualSchedulerService {
                 return;
         }
 
-        // Check conditions
+        // Check fan conditions
         if (updateDeviceName == "bbc-fan") {
             if (tempValue > 32) {
                 newValue = 2;
